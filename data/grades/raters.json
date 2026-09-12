@@ -1,0 +1,23 @@
+{
+  "G1": {
+    "label": "Opus-class judge",
+    "model": "claude-opus-5",
+    "execution": "main session (same context that authored the question set and gold references)",
+    "independence": "NOT independent of the item authoring; see METHODOLOGY.md Limitations L1",
+    "role": "model judge"
+  },
+  "G3": {
+    "label": "Haiku-class judge",
+    "model": "claude-haiku",
+    "execution": "cold subagent, fresh context, rubric + items only",
+    "independence": "independent of G1 and of the item authoring; saw no other rater's output",
+    "role": "model judge (low-cost arm; same model family as the system under test - see Limitations L2)"
+  },
+  "GH": {
+    "label": "Human rater",
+    "model": "human",
+    "execution": "not yet run",
+    "independence": "n/a",
+    "role": "human reference"
+  }
+}
