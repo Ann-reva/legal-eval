@@ -55,13 +55,24 @@ knowing which of your facts have expiry dates.
 
 ## 3. What was not verified
 
-- The gold references have **not** been reviewed by a licensed attorney. See
-  limitation L6 in `METHODOLOGY.md`.
+- The gold references have **not** been reviewed by a licensed attorney. This is
+  the single largest gap and no amount of additional rating closes it. See
+  limitation **L16** in `METHODOLOGY.md`.
+- **Agreement is not accuracy.** The human pass (`GH`, 15 of 40 items) checks
+  whether the rubric can be applied consistently against a written gold reference.
+  It does not establish which judge is legally right. The rater is a non-expert;
+  three of her five dimensions carry almost no variance; and on at least three
+  items the way each item was presented to her leaked a scoring-relevant fact.
+  See **L4-L8**.
 - The `G1` ratings were produced in the same context that authored the items, so
-  they are not independent. This was the pilot pass; it has since been superseded
-  by two independent API passes (`G2`, `G4`) and is excluded from every headline
-  statistic while being retained on the record. See limitation L1.
+  they are not independent. That pilot pass has been superseded by two independent
+  API passes (`G2`, `G4`), is excluded from every headline statistic, and is
+  retained on the record. See **L1**.
 - The judge runs are **not bit-reproducible**: the models used reject the
-  `temperature` parameter. See limitation L3 and `docs/run_log.md`.
-- No human rater has scored the set, so nothing here establishes which judge is
-  closer to correct — only how far apart they are. See limitation L5.
+  `temperature` parameter. The test-retest arm measures the resulting variance
+  (0.86-1.00 weighted kappa within a judge) rather than assuming it away, but
+  sensitivity to the *wording* of the rubric is untested. See **L3** and
+  `docs/run_log.md`.
+- **No cross-vendor judge has been run.** `src/run_graders.py` supports OpenAI and
+  Google providers, but only Anthropic models were used, so cross-vendor
+  capability is a promise in this repository rather than a result. See **L14**.

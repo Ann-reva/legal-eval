@@ -210,9 +210,11 @@ def main():
               + f" | {fmt(cohen_kappa(x,y,[0,1]),2)} | {len(pids)} |")
         W("")
         W("> Read this against section 3. Where a judge agrees with **itself** far more "
-          "than it agrees with any other judge, the between-rater disagreement is not "
-          "run-to-run noise - it is a stable property of the judge, and no amount of "
-          "re-running will average it away.\n")
+          "than it agrees with any other judge, the between-rater disagreement does not "
+          "look like run-to-run noise. Two bounds on that reading: one repeat bounds the "
+          "run-to-run variance without establishing the judge's full behavioural "
+          "distribution, and re-running the same prompt says nothing about sensitivity to "
+          "how the rubric is worded - the larger risk, and untested here.\n")
 
     if ablate:
         W("## 4b. Ablation - gold reference withheld\n")

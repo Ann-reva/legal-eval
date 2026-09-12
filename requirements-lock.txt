@@ -1,0 +1,6 @@
+# Exact environment that produced the committed results/ artefacts.
+# Python 3.11.15
+numpy==2.4.4
+matplotlib==3.10.9
+scikit-learn==1.8.0
+krippendorff==0.8.2

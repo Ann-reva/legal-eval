@@ -204,7 +204,7 @@ The same judge, the same prompt, a second independent run in a different present
 | `G2` vs `G2b` | 0.95 | 0.71 | 0.88 | 0.94 | 0.88 | 0.94 | 40 |
 | `G4` vs `G4b` | 1.00 | 0.87 | 0.86 | 1.00 | 0.89 | 1.00 | 40 |
 
-> Read this against section 3. Where a judge agrees with **itself** far more than it agrees with any other judge, the between-rater disagreement is not run-to-run noise - it is a stable property of the judge, and no amount of re-running will average it away.
+> Read this against section 3. Where a judge agrees with **itself** far more than it agrees with any other judge, the between-rater disagreement does not look like run-to-run noise. Two bounds on that reading: one repeat bounds the run-to-run variance without establishing the judge's full behavioural distribution, and re-running the same prompt says nothing about sensitivity to how the rubric is worded - the larger risk, and untested here.
 
 ## 4b. Ablation - gold reference withheld
 

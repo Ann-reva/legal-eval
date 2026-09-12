@@ -99,24 +99,31 @@ validated in `tests/` against published worked examples and against the
 
 ## Findings
 
-**1. The disagreement is real, not run-to-run noise.** This has to come first,
-because it is what licenses every other finding. Each judge was run a second time
-on the same items with the same prompt. Weighted kappa **with itself** was 0.86 to
-1.00 for the Opus-class judge and 0.71 to 0.95 for the Sonnet-class judge; on the
-critical-failure flag the Opus judge reproduced its 18 flags **exactly**
-(kappa 1.00). Against *each other*, the same two judges reach 0.31 to 0.78. A
-judge that agrees with itself at 1.00 and with its neighbour at 0.24 is not noisy
-- it is systematically different, and re-running will not average that away.
-Worth noting because these models reject the `temperature` parameter, so the runs
-could not be pinned to deterministic sampling; the retest arm is what establishes
-the stability empirically rather than assuming it.
+**1. The disagreement does not look like run-to-run noise.** This has to come
+first, because it is what licenses every other finding. Each judge was run a
+second time on the same items with the same prompt. Weighted kappa **with itself**
+was 0.86 to 1.00 for the Opus-class judge and 0.71 to 0.95 for the Sonnet-class
+judge; on the critical-failure flag the Opus judge reproduced its 18 flags
+**exactly** (kappa 1.00). Against *each other*, the same two judges reach 0.31 to
+0.78.
+
+A judge that agrees with itself at 1.00 and with its neighbour at 0.24 is, on this
+evidence, systematically different rather than noisy. The claim should be read
+with two bounds on it. One repeat bounds run-to-run variance; it does not
+establish the judge's behavioural distribution, which would need many repeats.
+And re-running the *same* prompt tests the smaller risk - sensitivity to how the
+rubric is worded and ordered is the larger one for an LLM judge, and it is
+untested here (L3). What the arm does establish is that the variance these models
+show without a `temperature` control is small relative to the gap between judges,
+measured rather than assumed.
 
 **2. The choice of judge dominates everything else.** Across the panel, the share
 of answers flagged as a critical failure - the deployment gate - ran from **8% to
 75%**. Mean legal-accuracy score ran from **1.07 to 2.50** on a 0-3 scale. Same
 rubric, same answers, same instructions.
 
-**3. Matching a judge to a human by average score picks the wrong judge.** The
+**3. In this sample, matching a judge to a human by average score would have
+picked the wrong judge.** The
 human rater's mean legal-accuracy score is **1.07** - identical to the
 Sonnet-class judge (1.07) and well below the Opus-class judge (1.43). On
 aggregate severity, Sonnet is the perfect match. Item by item it is not close:
@@ -132,14 +139,16 @@ The low-cost judge flagged **none** of the nine items the human flagged as
 critical failures - zero of nine. And the Opus judge produced **no false
 positives at all** against the human: every item it flagged, she flagged too; it
 only missed three. For a release gate, that asymmetry is the property worth
-knowing, and it is invisible in any aggregate score.
+knowing, and it is invisible in any aggregate score. On 15 items against a
+non-expert rater this is exploratory evidence, not an established effect - see
+L4 through L8.
 
 **4. Agreement is worst on the two things a legal product most needs.** Even
 between the two strong model judges, the critical-failure flag reached kappa
 **0.24** and authority hygiene - the dimension that catches fabricated citations
 - reached weighted kappa **0.31**, the lowest of the five.
 
-**5. Roughly a third of the agreement was the answer key, not the law.** Removing
+**5. A substantial share of the agreement was the answer key, not the law.** Removing
 the gold reference from the Opus judge's prompt dropped its agreement with its own
 gold-reference-equipped self from a 0.86-1.00 ceiling to **0.46-0.75**. The
 collapse is worst on authority hygiene: **1.00 to 0.46**. That is the expected
@@ -175,49 +184,105 @@ second motivation for splitting D1 into conclusion and reasoning (P2).
 
 ## Limitations
 
+Sixteen, in the order they most constrain what these results can be used for.
+An evaluation write-up that does not list them is not finished.
+
+**On the design of the study**
+
 - **L1 - the pilot pass was not independent, and is on the record rather than
-  deleted.** `G1` ran in the context that authored the items. It is excluded from
-  every headline statistic, retained for comparison, and marked as
-  non-independent in the rater manifest. The headline judges are independent API
-  passes, one call per item.
+  deleted.** `G1` ran in the context that authored the items, so it knew what each
+  trap was designed to catch. It was superseded by independent API passes (one
+  call per item, fresh context), is excluded from every headline statistic, and is
+  marked non-independent in the rater manifest.
 - **L2 - `G3` shares a model family with the system under test**, so its leniency
   is confounded with self-preference. The size of that effect is not separable
   from the capability difference with the data collected here.
-- **L3 - sampling could not be pinned, but stability was measured instead.** The
-  judge models reject the `temperature` parameter, so runs are not
-  bit-reproducible. The test-retest arm (finding 1) measures the resulting
-  variance directly and finds it small relative to between-judge divergence.
-  Measured, not assumed - but it is measured on one repeat, not a distribution.
+- **L3 - sampling stability was measured; prompt stability was not.** The judge
+  models reject the `temperature` parameter, so runs are not bit-reproducible.
+  The test-retest arm (finding 1) measures that variance directly and finds it
+  small - but re-running the *same* prompt tests the smaller risk. Sensitivity to
+  how the rubric is worded and ordered is the larger one for an LLM judge and is
+  untested here.
+
+**On the human pass**
+
 - **L4 - the human rater is a non-expert.** She validates that the rubric is
-  applicable and consistent against a written gold reference. She does **not**
-  validate that the gold references state the law correctly. Nothing here
-  establishes legal ground truth.
-- **L5 - the human pass covers 15 items, and one of her dimensions has almost no
-  variance.** She scored issue completeness 1 on 14 of 15 items. Kappa is
-  unstable at that marginal distribution - Gwet's AC2 on the same cells is 0.99 -
-  so her D3 figures should be read as weak evidence, and the comparison across
-  judges on D3 rests mostly on the model arms.
-- **L6 - n = 40 (15 for the human), and roughly forty pairwise coefficients are
+  applicable and consistently interpretable against a written gold reference. She
+  does **not** validate that the gold references state the law correctly. Nothing
+  in her pass establishes legal ground truth.
+- **L5 - the human pass was partly contaminated by the interviewer.** Items were
+  presented one at a time, each with a short glossary of terms. On at least three
+  of the fifteen (PRV-02, COR-05, CON-06) that glossary stated a fact that was
+  itself scoring-relevant - that CCPA is an opt-out regime, that the 280G
+  cleansing vote is available only to private companies, that a reverse triangular
+  merger leaves the target surviving - and the rater's written rationale then
+  turned on exactly that point. This inflates her apparent agreement with the
+  judges that had the gold reference in front of them. The fix for a future pass
+  is a fixed glossary written before any item is shown, containing no proposition
+  that appears in a gold reference.
+- **L6 - three of her five dimensions carry almost no variance.** She scored issue
+  completeness 1 on 14 of 15 items, authority hygiene 1 on 13 of 15, and scope
+  discipline 1 on 13 of 15. Kappa against a near-constant rater is close to
+  uninformative, and where it came out high it is because the other rater is also
+  near-constant. Her anchoring value rests on D1, D2 and the flag.
+- **L7 - no intra-rater check for the human.** Test-retest is finding 1 for the
+  model judges and was not run for her: fifteen items in one sitting, no repeated
+  items at the end, no calibration break. Her earlier ratings use more of the
+  scale than her later ones, and drift cannot be separated from signal.
+- **L8 - the human pass covers 15 of 40 items.** Enough to rank the judges
+  against her; not enough to be precise about any single dimension.
+
+**On the statistics**
+
+- **L9 - n = 40 (15 for the human), and roughly forty pairwise coefficients are
   reported with no multiplicity control.** Bootstrap CIs on weighted kappa run
   about +/-0.2 at n=40 and wider at n=15. Directions are stable across resamples;
-  the precise ranking of dimensions is not.
-- **L7 - items are authored, not sampled.** Every item is built around a trap, so
+  the precise ranking of dimensions is not. Every comparison in this study should
+  be read as exploratory.
+- **L10 - items are authored, not sampled.** Every item is built around a trap, so
   the observed critical-failure rates say nothing about the rate a production
-  system would show on real traffic. They are a stress test, not a survey.
-- **L8 - single vendor.** All model judges are Claude models. Cross-vendor
-  agreement is the more demanding test, and `run_graders.py` supports OpenAI and
-  Google providers for it.
-- **L9 - the prompt-condition manipulation is confounded.** `B_terse` changes
-  length, hedging and directness at once, so an effect cannot be attributed to
-  one of them. The mechanical explanation offered for the D1 anomaly in finding 8
-  is a hypothesis, not a tested result.
-- **L10 - the gold references have not been reviewed by a licensed attorney.**
+  system would show on real traffic. This is a stress test, not a survey.
+- **L11 - the ablation removed three components at once.** Dropping the gold
+  reference dropped the must-include list, the trap and the expected authorities
+  together, so finding 5 cannot attribute the loss to any one of them. The
+  authority-hygiene collapse is most plausibly the authorities list specifically -
+  testable by removing one component at a time, and not tested.
+- **L12 - the flag and D4 are not independent by construction.** The rubric makes
+  D4 = 0 set the critical-failure flag automatically, and proposal P1's first
+  binary check is that same condition. Any correlation between them is partly
+  definitional and is not convergent evidence.
+- **L13 - `G1` and `G4` are the same model.** Their pairwise row reads like a
+  between-rater comparison and is closer to a retest of one model from a
+  contaminated context.
+
+**On coverage**
+
+- **L14 - single vendor, and no cross-vendor run.** All model judges are Claude
+  models. Cross-vendor agreement is the more demanding and more informative test.
+  `src/run_graders.py` supports OpenAI and Google providers; neither has been run,
+  so that capability is a promise in this repository, not a result.
+- **L15 - the prompt-condition manipulation is confounded.** `B_terse` changes
+  length, hedging and directness at once, so an effect cannot be attributed to one
+  of them. The mechanical explanation offered for the D1 anomaly in finding 8 is a
+  hypothesis, not a tested result.
+- **L16 - the gold references have not been reviewed by a licensed attorney.**
   They are researched against named primary authority and re-checked against
   primary sources in September 2026 (`docs/verification.md`), but in a production
-  programme they would be adjudicated by subject-matter experts. Several items are
-  deliberately built on rules that change - HSR thresholds, FLSA salary levels, EU
-  AI Act application dates - and reward an answer that flags the volatility rather
-  than one that states a figure.
+  programme they would be adjudicated by subject-matter experts before any score
+  derived from them was relied on. Several items are deliberately built on rules
+  that change - HSR thresholds, FLSA salary levels, EU AI Act application dates -
+  and reward an answer that flags the volatility rather than one that states a
+  figure.
+
+### The question this study cannot answer
+
+*How do you know the stricter judge is right rather than merely stricter?*
+
+It does not. Agreement is not accuracy. The human pass tests whether the rubric
+can be applied consistently against a written gold reference; it does not test
+whether the gold reference is correct, and the rater is not a lawyer. Answering
+the accuracy question needs adjudicated gold references from practising counsel,
+and that is the first thing this study would buy with a budget.
 
 ## What this cost
 

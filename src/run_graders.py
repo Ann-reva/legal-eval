@@ -16,7 +16,7 @@ Then re-run `python src/analyze.py` - the new rater is picked up automatically
 once it has an entry in data/grades/raters.json.
 """
 from __future__ import annotations
-import argparse, json, os, random, sys, time
+import argparse, json, os, random, sys, time, zlib
 from concurrent.futures import ThreadPoolExecutor
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -181,7 +181,8 @@ def main():
     ap.add_argument("--provider", required=True, choices=sorted(PROVIDERS))
     ap.add_argument("--model", required=True)
     ap.add_argument("--out", required=True, help="rater id, e.g. G2")
-    ap.add_argument("--seed", type=int, default=None, help="presentation-order seed")
+    ap.add_argument("--seed", type=int, default=None,
+                    help="presentation-order seed; default is crc32 of --out, which is stable")
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--no-gold", action="store_true",
                     help="hide the gold reference from the judge (ablation arm)")
@@ -193,7 +194,13 @@ def main():
     recs = [{"id": q["id"], "jurisdiction": q["jurisdiction"], "question": q["question"],
              "gold_reference": {k: q["gold"][k] for k in ("must_include", "trap", "authorities")},
              "answer": ans[q["id"]]} for q in qs]
-    random.Random(a.seed if a.seed is not None else abs(hash(a.out)) % 10_000).shuffle(recs)
+    # Deterministic default: Python's str hash is salted per process (PYTHONHASHSEED),
+    # so hash(name) would give a different presentation order on every run and the
+    # default invocation would not be reproducible. crc32 is stable across processes,
+    # platforms and Python versions.
+    seed = a.seed if a.seed is not None else zlib.crc32(a.out.encode()) % 100_000
+    print(f"presentation-order seed: {seed}")
+    random.Random(seed).shuffle(recs)
 
     fn = PROVIDERS[a.provider]
     print(f"grading {len(recs)} items with {a.provider}:{a.model} -> data/grades/{a.out}.jsonl")
@@ -210,7 +217,7 @@ def main():
     # register the rater so analyze.py picks it up
     mpath = f"{ROOT}/data/grades/raters.json"
     meta = json.load(open(mpath))
-    meta[a.out] = {"label": f"{a.provider}:{a.model}" + (" (no gold reference)" if a.no_gold else ""),
+    meta[a.out] = {"seed": seed, "label": f"{a.provider}:{a.model}" + (" (no gold reference)" if a.no_gold else ""),
                    "model": a.model,
                    "execution": "API, one independent call per item"
                                 + (", gold reference withheld" if a.no_gold else ""),
