@@ -1,0 +1,44 @@
+{
+ "seed": 2026,
+ "judges": [
+  "G2",
+  "G3",
+  "G4"
+ ],
+ "stratified": [
+  "CON-01",
+  "CON-04",
+  "COR-05",
+  "CON-06",
+  "EMP-01",
+  "EMP-06",
+  "IPR-03",
+  "IPR-04",
+  "LIT-05",
+  "LIT-04",
+  "ETH-01",
+  "ETH-02",
+  "PRV-05",
+  "PRV-02"
+ ],
+ "high_disagreement": [
+  "CON-03"
+ ],
+ "order": [
+  "CON-01",
+  "CON-04",
+  "COR-05",
+  "CON-06",
+  "EMP-01",
+  "EMP-06",
+  "IPR-03",
+  "IPR-04",
+  "LIT-05",
+  "LIT-04",
+  "ETH-01",
+  "ETH-02",
+  "PRV-05",
+  "PRV-02",
+  "CON-03"
+ ]
+}
