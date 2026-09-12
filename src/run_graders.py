@@ -48,7 +48,31 @@ D4_authority, D5_scope (each an integer 0-3), critical_failure (boolean), and ra
 (one or two sentences naming the specific text that drove the scores)."""
 
 
-def build_prompt(rec, rubric):
+USER_NO_GOLD = """QUESTION ({jurisdiction})
+{question}
+
+ANSWER UNDER TEST
+{answer}
+
+No gold reference is provided for this item. Judge it on your own knowledge of the law.
+
+Return JSON with exactly these keys: D1_accuracy, D2_jurisdiction, D3_completeness, \
+D4_authority, D5_scope (each an integer 0-3), critical_failure (boolean), and rationale \
+(one or two sentences naming the specific text that drove the scores)."""
+
+
+def build_prompt(rec, rubric, no_gold=False):
+    """The no_gold variant removes the answer key.
+
+    With the gold reference in the prompt, the task is partly 'match the checklist'.
+    Running one judge without it measures how much of the agreement was the answer
+    key doing the work rather than the model's own legal knowledge - see the
+    no-gold arm in METHODOLOGY.md.
+    """
+    if no_gold:
+        return (SYSTEM.format(rubric=rubric),
+                USER_NO_GOLD.format(jurisdiction=rec["jurisdiction"],
+                                    question=rec["question"], answer=rec["answer"]))
     must = "\n".join(f"- {m}" for m in rec["gold_reference"]["must_include"])
     return (SYSTEM.format(rubric=rubric),
             USER.format(jurisdiction=rec["jurisdiction"], question=rec["question"],
@@ -139,8 +163,8 @@ def parse(text):
     return {k: obj[k] for k in DIMS + ["critical_failure", "rationale"]}
 
 
-def grade_one(fn, model, rec, rubric, retries=3):
-    system, user = build_prompt(rec, rubric)
+def grade_one(fn, model, rec, rubric, retries=3, no_gold=False):
+    system, user = build_prompt(rec, rubric, no_gold)
     last = None
     for a in range(retries):
         try:
@@ -159,6 +183,8 @@ def main():
     ap.add_argument("--out", required=True, help="rater id, e.g. G2")
     ap.add_argument("--seed", type=int, default=None, help="presentation-order seed")
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--no-gold", action="store_true",
+                    help="hide the gold reference from the judge (ablation arm)")
     a = ap.parse_args()
 
     rubric = open(f"{ROOT}/docs/rubric.md").read()
@@ -172,7 +198,7 @@ def main():
     fn = PROVIDERS[a.provider]
     print(f"grading {len(recs)} items with {a.provider}:{a.model} -> data/grades/{a.out}.jsonl")
     with ThreadPoolExecutor(max_workers=a.workers) as ex:
-        out = list(ex.map(lambda r: grade_one(fn, a.model, r, rubric), recs))
+        out = list(ex.map(lambda r: grade_one(fn, a.model, r, rubric, no_gold=a.no_gold), recs))
     out = [o for o in out if o]
 
     path = f"{ROOT}/data/grades/{a.out}.jsonl"
@@ -184,9 +210,12 @@ def main():
     # register the rater so analyze.py picks it up
     mpath = f"{ROOT}/data/grades/raters.json"
     meta = json.load(open(mpath))
-    meta[a.out] = {"label": f"{a.provider}:{a.model}", "model": a.model,
-                   "execution": "API, one independent call per item, temperature 0",
-                   "independence": "independent", "role": "model judge"}
+    meta[a.out] = {"label": f"{a.provider}:{a.model}" + (" (no gold reference)" if a.no_gold else ""),
+                   "model": a.model,
+                   "execution": "API, one independent call per item"
+                                + (", gold reference withheld" if a.no_gold else ""),
+                   "independence": "independent", "role": "model judge",
+                   "headline": False}
     json.dump(meta, open(mpath, "w"), indent=2)
     print(f"registered {a.out} in raters.json - now run: python src/analyze.py")
 

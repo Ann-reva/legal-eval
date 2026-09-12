@@ -5,21 +5,26 @@ questions with gold references, a written rubric, a system under test run under
 two prompt conditions, two independent model judges, and the inter-rater
 statistics that say whether the judges are measuring the same thing.
 
-**Headline result:** four judges applied the same rubric to the same 40 answers.
-The number of answers they flagged as a release blocker ran from **3 to 30**.
-Across the three independent judges, Fleiss' kappa was **at or below 0.03 on
-every dimension**, and all three agreed about whether an item is a blocker on
-only **10 of 40 items**.
+**Headline result.** Judges applying the same rubric to the same 40 answers
+flagged between **8% and 75%** of them as release blockers. That divergence is not
+noise: re-running each judge on the same items reproduced its own scores at
+weighted kappa **0.86-1.00** (the Opus-class judge reproduced all 18 of its flags
+exactly), while agreement *between* judges ran 0.09-0.78. The disagreement is a
+stable property of the judge, not run-to-run variance.
 
-The cause is not that the rubric is unusable. Restricted to the two strong
-independent judges, weighted kappa reaches 0.78 on issue completeness and 0.72 on
-legal accuracy — the low-cost judge is a different instrument, not a noisier copy
-of the same one. And where the lenient judges failed to flag, their own written
-rationales had usually already named the defect, which makes this a fixable
-problem of instrument design rather than of rater capability.
+A human rater scored 15 of the items to anchor it. Her average severity is
+identical to the Sonnet-class judge - and item by item she agrees far more with
+the Opus-class judge (flag kappa **0.62** vs **0.24**). The low-cost judge caught
+**zero of the nine** items she flagged as critical failures. **Matching a judge to
+a human by average score picks the wrong judge.**
+
+Removing the gold reference from a judge's prompt cost roughly a third of its
+agreement with itself - and almost all of it on authority hygiene (1.00 to 0.46).
+Much of what looked like legal judgment was checklist matching.
 
 The full argument is in **[`METHODOLOGY.md`](METHODOLOGY.md)** (two pages).
 
+![Same judge vs other judges vs the human rater](results/figures/intra_vs_inter.png)
 ![Rater severity](results/figures/rater_severity.png)
 ![Critical-failure spread](results/figures/critical_failure_spread.png)
 ![Agreement by dimension](results/figures/agreement_by_dimension.png)
@@ -33,7 +38,11 @@ data/
                                (must_include / trap / authorities)
   answers.jsonl                40 answers from the system under test, tagged with
                                the prompt condition that produced them
-  grades/G1..G4.jsonl          per-item ratings from each judge, with rationales
+  grades/G1..G4.jsonl          per-item ratings from each model judge, with rationales
+  grades/GH.jsonl              human rater, 15 items (non-expert, rubric-trained)
+  grades/G2b, G4b.jsonl        test-retest arms: same judge, same prompt, second run
+  grades/G4ng.jsonl            ablation arm: same judge, gold reference withheld
+  _human_sample.json           which items the human pass covered, and why
   grades/raters.json           rater manifest: model, execution, independence
 docs/
   rubric.md                    the rubric, v1.0 — five 0-3 dimensions, anchors,
@@ -51,6 +60,7 @@ src/
   figures.py                   the two figures above
   run_graders.py               run a judge via API — Anthropic / OpenAI / Google
   human_sheet.py               make and ingest a human rating pass
+  sample_human_items.py        reproducible stratified sampling for that pass
 tests/
   test_agreement.py            every estimator vs published worked examples and
                                vs scikit-learn and the krippendorff package
@@ -90,9 +100,9 @@ python src/analyze.py      # Fleiss' kappa and Krippendorff's alpha appear at 3+
 One independent API call per item, temperature 0, randomised presentation order
 per judge. The rater is registered in `raters.json` automatically.
 
-**Add a human rating pass.** Given how far apart the judges are, this is now the
-most valuable missing piece — it is the only thing that says which judge is
-closer to right rather than merely whether two of them agree.
+**Add more human ratings.** Fifteen items are enough to rank the judges and not
+enough to be precise about any one dimension. The sheet below extends the pass;
+Krippendorff's alpha handles the partial coverage.
 
 ```bash
 python src/human_sheet.py --make                 # -> results/human_rating_sheet.csv
@@ -121,8 +131,11 @@ unchanged.
   finding 4 in `METHODOLOGY.md`.
 - **The gold references were authored for this study and have not been reviewed
   by a licensed attorney.** See limitation L7.
-- **Sampling is not pinned.** The judge models reject the `temperature`
-  parameter, so re-running will not reproduce these exact ratings. See L3.
+- **Sampling is not pinned**, but its effect is measured: the test-retest arm puts
+  intra-rater agreement at 0.86-1.00. See L3.
+- **The human rater is a non-expert** applying the rubric against a written gold
+  reference. She does not validate that the gold references state the law
+  correctly. See L4.
 
 Nothing in this repository is legal advice.
 

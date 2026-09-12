@@ -16,11 +16,11 @@
     "headline": true
   },
   "GH": {
-    "label": "Human rater",
+    "label": "Non-expert human rater, rubric-trained",
     "model": "human",
-    "execution": "not yet run",
-    "independence": "n/a",
-    "role": "human reference",
+    "execution": "manual, 15 of 40 items, one item at a time, no other rater's scores shown",
+    "independence": "independent; does NOT validate the legal correctness of the gold references",
+    "role": "human reference (non-expert)",
     "headline": true
   },
   "G2": {
@@ -40,5 +40,35 @@
     "role": "model judge",
     "headline": true,
     "headline_pair": true
+  },
+  "G4b": {
+    "label": "Opus-class, API, second run",
+    "model": "claude-opus-5",
+    "execution": "API, one independent call per item, different presentation order, same prompt",
+    "independence": "repeat of G4 - measures intra-rater (test-retest) reliability, not between-rater",
+    "role": "test-retest arm",
+    "headline": false,
+    "variant_of": "G4",
+    "arm": "retest"
+  },
+  "G2b": {
+    "label": "Sonnet-class, API, second run",
+    "model": "claude-sonnet-5",
+    "execution": "API, one independent call per item, different presentation order, same prompt",
+    "independence": "repeat of G2 - measures intra-rater (test-retest) reliability, not between-rater",
+    "role": "test-retest arm",
+    "headline": false,
+    "variant_of": "G2",
+    "arm": "retest"
+  },
+  "G4ng": {
+    "label": "Opus-class, API, gold reference withheld",
+    "model": "claude-opus-5",
+    "execution": "API, one independent call per item, gold reference removed from the prompt",
+    "independence": "ablation of G4 - measures how much of the agreement the answer key was doing",
+    "role": "ablation arm",
+    "headline": false,
+    "variant_of": "G4",
+    "arm": "no_gold"
   }
 }

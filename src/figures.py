@@ -122,14 +122,54 @@ def fig_agreement(grades, pair, ids, meta, out):
     fig.tight_layout(); fig.savefig(out, dpi=200); plt.close(fig)
 
 
+def fig_intra_vs_inter(grades, meta, out):
+    """The study's central comparison: a judge against itself, against another
+    judge, and against the human rater. Three series, categorical slots 1-3,
+    validated all-pairs; every bar carries a direct label."""
+    rows = [("G4", "G4b", "Same judge, second run (n=40)"),
+            ("G4", "G2", "A different model judge (n=40)"),
+            ("G4", "GH", "The human rater (n=15)")]
+    rows = [(a, b, lab) for a, b, lab in rows if a in grades and b in grades]
+    labels = [n.split(" ", 1)[1] for _, n in DIMS] + ["Critical-failure flag"]
+    fig, ax = plt.subplots(figsize=(8.8, 5.2))
+    h = 0.25
+    y = np.arange(len(labels))
+    for n, ((a, b, lab), col) in enumerate(zip(rows, SERIES)):
+        ids = sorted(set(grades[a]) & set(grades[b]))
+        vals = []
+        for d, _ in DIMS:
+            vals.append(cohen_kappa([grades[a][i][d] for i in ids],
+                                    [grades[b][i][d] for i in ids], CATS, "quadratic"))
+        vals.append(cohen_kappa([int(grades[a][i]["critical_failure"]) for i in ids],
+                                [int(grades[b][i]["critical_failure"]) for i in ids], [0, 1]))
+        off = (n - (len(rows) - 1) / 2) * (h + 0.03)
+        bars = ax.barh(y + off, vals, height=h, color=col, label=lab, zorder=3)
+        for rect, v in zip(bars, vals):
+            ax.text(max(v, 0) + .015, rect.get_y() + rect.get_height() / 2, f"{v:.2f}",
+                    va="center", ha="left", fontsize=8.5, color=INK_2)
+    ax.set_yticks(y); ax.set_yticklabels(labels); ax.invert_yaxis()
+    ax.set_xlim(0, 1.12); ax.set_xticks([0, .25, .5, .75, 1])
+    ax.set_xlabel("Cohen's kappa (quadratic weights; unweighted for the binary flag)")
+    ax.set_title("The Opus-class judge agrees with itself; it agrees with others much less",
+                 loc="left", fontsize=12, color=INK, pad=38)
+    ax.legend(frameon=False, loc="upper left", bbox_to_anchor=(0, 1.15), ncol=3,
+              fontsize=8.5, handletextpad=.4, columnspacing=1.2)
+    _clean(ax)
+    fig.tight_layout(); fig.savefig(out, dpi=200); plt.close(fig)
+
+
 if __name__ == "__main__":
     qs, ans, meta, grades, order = load()
     raters = sorted(r for r in meta if r in grades)
-    ids = [i for i in order if all(i in grades[r] for r in raters)]
-    judges = [r for r in raters if meta[r].get("headline", True)][:3]
+    complete = [r for r in raters if len([i for i in order if i in grades[r]]) == len(order)]
+    ids = [i for i in order if all(i in grades[r] for r in complete)]
+    judges = [r for r in raters if meta[r].get("headline", True)
+              and not meta[r].get("variant_of") and r in complete][:3]
     pair = [r for r in raters if meta[r].get("headline_pair")] or judges[:2]
+    pair = [r for r in pair if r in complete][:2]
     os.makedirs(f"{ROOT}/results/figures", exist_ok=True)
     fig_severity(grades, judges, ids, meta, f"{ROOT}/results/figures/rater_severity.png")
     fig_flag_spread(grades, judges, ids, f"{ROOT}/results/figures/critical_failure_spread.png")
     fig_agreement(grades, pair, ids, meta, f"{ROOT}/results/figures/agreement_by_dimension.png")
+    fig_intra_vs_inter(grades, meta, f"{ROOT}/results/figures/intra_vs_inter.png")
     print("figures written:", judges, "pair:", pair)

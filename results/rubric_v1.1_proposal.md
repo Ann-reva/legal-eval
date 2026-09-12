@@ -129,6 +129,13 @@ cite. `G1` read that as "no citation expected, none missing"; `G3` read the
 absence of a citation as the v1.0 anchor-1 condition. Both are defensible under
 the text.
 
+**New evidence from the ablation arm.** Removing the gold reference from the
+Opus-class judge's prompt collapsed D4 agreement with its own equipped self from
+**1.00 to 0.46** - by far the largest drop of any dimension (the others fell to
+0.64-0.75). D4 is the dimension most dependent on the answer key, which is exactly
+the failure this proposal predicts: without an authored list of expected
+authorities, "should a citation have been here?" is an unanchored judgment call.
+
 **Proposed change.** Add a boolean `gold.citation_expected` to every item, set at
 authoring time. D4 anchor 1 ("asserts propositions with no authority") applies
 only where it is true. Where it is false, D4 scores only fabrication and
@@ -152,6 +159,15 @@ further than three times as many contract items.
 ---
 
 ## P6 — Do not use a low-cost judge as a safety gate
+
+**New evidence from the human pass.** The low-cost judge flagged **none of the
+nine** items the human rater flagged as critical failures - zero of nine, kappa
+0.00. The Opus-class judge reached kappa 0.62 against her with **no false
+positives**: every item it flagged, she flagged too. And the two judges' mean
+severity is a trap - the Sonnet-class judge matches her average legal-accuracy
+score exactly (1.07) while agreeing with her item by item at 0.24. Judge selection
+must be validated against item-level agreement with a human, never against
+matching aggregate rates.
 
 **Evidence.** The low-cost arm flagged 3 items out of 40 where the two strong
 independent judges flagged 18 and 30. Its mean legal-accuracy score was 2.50

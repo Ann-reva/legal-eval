@@ -8,6 +8,10 @@
 | `G3` | claude-haiku | cold subagent, fresh context | 40/40 | 2026-09-11 |
 | `G2` | claude-sonnet-5 | API via `src/run_graders.py`, one call per item | 40/40 | 2026-09-12 |
 | `G4` | claude-opus-5 | API via `src/run_graders.py`, one call per item | 40/40 | 2026-09-12 |
+| `GH` | human (non-expert, rubric-trained) | manual, one item at a time, no other rater's scores shown | 15/40 | 2026-09-12 |
+| `G4b` | claude-opus-5 | test-retest: same prompt, different order, second run | 40/40 | 2026-09-12 |
+| `G2b` | claude-sonnet-5 | test-retest: same prompt, different order, second run | 40/40 | 2026-09-12 |
+| `G4ng` | claude-opus-5 | ablation: gold reference withheld from the prompt | 39/40 | 2026-09-12 |
 
 ## Notes from the API runs
 
@@ -28,7 +32,19 @@ configuration choice and should be stated: a judge allowed to reason at length
 may behave differently, and comparing thinking and non-thinking judges is a
 sensible follow-up experiment.
 
-**Cost.** Roughly 132k input and 12k output tokens per 40-item pass.
+**One item failed in the ablation arm** (`G4ng`, 39/40) after three retries. It is
+left missing rather than backfilled by hand; the analysis computes every
+comparison on the items the two raters actually share and prints the n.
+
+**Human pass.** The 15 items were selected by `src/sample_human_items.py`
+(seed 2026) *before* any human rating was collected: one item drawn at random from
+each of the 14 practice-area x prompt-condition strata, plus the single item with
+the widest spread across the three independent model judges. The rater saw the
+question, the gold reference and the answer, one item at a time, and no model
+scores at any point.
+
+**Cost.** Roughly 132k input and 12k output tokens per 40-item pass; eight passes
+in total.
 
 ## Rebuilding
 
