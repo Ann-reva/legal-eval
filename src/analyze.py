@@ -39,8 +39,13 @@ def fmt(x, nd=3):
 
 def main():
     qs, ans, meta, grades, order = load()
-    raters = [r for r in meta if r in grades]
+    raters = sorted((r for r in meta if r in grades), key=lambda r: r)
     ids = [i for i in order if all(i in grades[r] for r in raters)]
+    headline = [r for r in raters if meta[r].get("headline", True)]
+    pair = [r for r in raters if meta[r].get("headline_pair")]
+    if len(pair) != 2:
+        pair = headline[:2] if len(headline) >= 2 else raters[:2]
+    excluded = [r for r in raters if r not in headline]
     L = []
     W = L.append
 
@@ -48,6 +53,16 @@ def main():
     W(f"Generated from `data/grades/` by `src/analyze.py`. "
       f"{len(ids)} items scored by {len(raters)} rater(s): "
       + ", ".join(f"`{r}` ({meta[r]['label']})" for r in raters) + ".\n")
+    if excluded:
+        W("> **Excluded from the headline figures:** "
+          + ", ".join(f"`{r}`" for r in excluded)
+          + ". Their ratings remain in `data/grades/` and in the pairwise tables below, "
+            "but every multi-rater statistic is computed over the independent raters only. "
+            "The reason is in the panel table.\n")
+    if len(pair) == 2:
+        W(f"> **Headline pair:** `{pair[0]}` vs `{pair[1]}` - the two independent, "
+          "high-capability judges. The disagreement dossier and the concentration "
+          "analysis use this pair.\n")
 
     # ---------------- rater panel ----------------
     W("## 1. Rater panel\n")
@@ -69,12 +84,15 @@ def main():
         W(f"| `{r}` | " + " | ".join(f"{m:.2f}" for m in means) + f" | {cf:.0%} |")
     W("")
     if len(raters) >= 2:
-        a, b = raters[0], raters[1]
-        d1a = np.mean([grades[a][i]["D1_accuracy"] for i in ids])
-        d1b = np.mean([grades[b][i]["D1_accuracy"] for i in ids])
-        W(f"> Severity gap on D1 between `{a}` and `{b}`: **{d1b - d1a:+.2f} points on a 0-3 scale**. "
-          "A gap this size means the two judges would report materially different pass rates "
-          "for the same system, before any question of agreement on individual items.\n")
+        cfs = {r: np.mean([grades[r][i]["critical_failure"] for i in ids]) for r in raters}
+        d1s = {r: np.mean([grades[r][i]["D1_accuracy"] for i in ids]) for r in raters}
+        lo_r, hi_r = min(cfs, key=cfs.get), max(cfs, key=cfs.get)
+        W(f"> Across {len(raters)} judges applying the same rubric to the same 40 answers, the "
+          f"critical-failure count runs from **{cfs[lo_r]*len(ids):.0f}** (`{lo_r}`) to "
+          f"**{cfs[hi_r]*len(ids):.0f}** (`{hi_r}`) - a factor of "
+          f"{cfs[hi_r]/max(cfs[lo_r],1/len(ids)):.0f}. Mean legal-accuracy score spans "
+          f"{min(d1s.values()):.2f} to {max(d1s.values()):.2f} on a 0-3 scale. The choice of judge, "
+          "not the system under test, is the dominant term in what gets reported.\n")
 
     # ---------------- pairwise ----------------
     W("## 3. Pairwise agreement, by dimension\n")
@@ -113,14 +131,30 @@ def main():
     W("")
 
     # ---------------- multi-rater ----------------
-    if len(raters) >= 3:
+    if len(headline) >= 3:
         W("## 4. Multi-rater agreement\n")
+        W("Computed over the independent raters only: "
+          + ", ".join(f"`{r}`" for r in headline) + ".\n")
         W("| Dimension | Fleiss kappa | Krippendorff alpha (ordinal) |")
         W("|---|---|---|")
         for d, name in DIMS:
-            units = [[grades[r][i][d] for r in raters] for i in ids]
+            units = [[grades[r][i][d] for r in headline] for i in ids]
             W(f"| {name} | {fmt(fleiss_kappa(units, CATS))} | {fmt(krippendorff_alpha(units,'ordinal'))} |")
+        units = [[int(grades[r][i]["critical_failure"]) for r in headline] for i in ids]
+        W(f"| **Critical-failure flag** | {fmt(fleiss_kappa(units,[0,1]))} | "
+          f"{fmt(krippendorff_alpha(units,'nominal'))} |")
         W("")
+        W("Per-item spread on the critical-failure flag across the "
+          f"{len(headline)} independent judges:\n")
+        cnt = collections.Counter(sum(int(grades[r][i]["critical_failure"]) for r in headline)
+                                  for i in ids)
+        W("| Judges flagging the item | Items |")
+        W("|---|---|")
+        for k2 in range(len(headline) + 1):
+            W(f"| {k2} of {len(headline)} | {cnt.get(k2,0)} |")
+        W("")
+        W(f"> Unanimity - all {len(headline)} agreeing that an item is or is not a "
+          f"critical failure - covers **{cnt.get(0,0)+cnt.get(len(headline),0)} of {len(ids)}** items.\n")
     else:
         W("## 4. Multi-rater agreement\n")
         W("Requires three or more raters. Add a third rating pass "
@@ -144,8 +178,8 @@ def main():
 
     # ---------------- where the disagreement lives ----------------
     W("## 6. Where the disagreement is concentrated\n")
-    if len(raters) >= 2:
-        a, b = raters[0], raters[1]
+    if len(pair) == 2:
+        a, b = pair
         by_area = collections.defaultdict(list)
         by_diff = collections.defaultdict(list)
         for i in ids:
@@ -185,8 +219,8 @@ def main():
                             "critical_failure", int(grades[r][i]["critical_failure"])])
 
     # ---------------- disagreement dossier ----------------
-    if len(raters) >= 2:
-        a, b = raters[0], raters[1]
+    if len(pair) == 2:
+        a, b = pair
         D = []
         D.append("# Disagreement dossier\n")
         D.append(f"Every item where `{a}` and `{b}` differ by 2 or more points on any dimension, "

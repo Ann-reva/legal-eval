@@ -5,16 +5,23 @@ questions with gold references, a written rubric, a system under test run under
 two prompt conditions, two independent model judges, and the inter-rater
 statistics that say whether the judges are measuring the same thing.
 
-**Headline result:** on the one dimension that gates deployment — the
-critical-failure flag — two judges applying the same rubric to the same 40
-answers reached Cohen's kappa of **0.03**. One flagged 11 items, the other 3,
-overlapping on 1. The cause turned out to be the rubric's instrument design, not
-the judges' legal reading: the lenient judge's own written rationales had already
-identified most of the defects it failed to flag.
+**Headline result:** four judges applied the same rubric to the same 40 answers.
+The number of answers they flagged as a release blocker ran from **3 to 30**.
+Across the three independent judges, Fleiss' kappa was **at or below 0.03 on
+every dimension**, and all three agreed about whether an item is a blocker on
+only **10 of 40 items**.
+
+The cause is not that the rubric is unusable. Restricted to the two strong
+independent judges, weighted kappa reaches 0.78 on issue completeness and 0.72 on
+legal accuracy — the low-cost judge is a different instrument, not a noisier copy
+of the same one. And where the lenient judges failed to flag, their own written
+rationales had usually already named the defect, which makes this a fixable
+problem of instrument design rather than of rater capability.
 
 The full argument is in **[`METHODOLOGY.md`](METHODOLOGY.md)** (two pages).
 
 ![Rater severity](results/figures/rater_severity.png)
+![Critical-failure spread](results/figures/critical_failure_spread.png)
 ![Agreement by dimension](results/figures/agreement_by_dimension.png)
 
 ## What is here
@@ -26,11 +33,13 @@ data/
                                (must_include / trap / authorities)
   answers.jsonl                40 answers from the system under test, tagged with
                                the prompt condition that produced them
-  grades/G1.jsonl, G3.jsonl    per-item ratings from each judge, with rationales
+  grades/G1..G4.jsonl          per-item ratings from each judge, with rationales
   grades/raters.json           rater manifest: model, execution, independence
 docs/
   rubric.md                    the rubric, v1.0 — five 0-3 dimensions, anchors,
                                critical-failure definitions, adjudication rules
+  run_log.md                   what was actually run, and what the API would not
+                               let the harness control
   verification.md              what was checked and how — statistics validated
                                against reference implementations, legal claims
                                re-checked against primary sources
@@ -65,9 +74,8 @@ python src/figures.py
 
 ## Extend
 
-**Add an independent model judge.** This is the most valuable next step — it
-removes limitation L1, the fact that the `G1` ratings were produced in the same
-context that authored the items.
+**Add a cross-vendor judge.** All four judges here are Claude models, which is
+limitation L6. An OpenAI or Google judge is the most informative addition.
 
 ```bash
 export ANTHROPIC_API_KEY=...
@@ -82,7 +90,9 @@ python src/analyze.py      # Fleiss' kappa and Krippendorff's alpha appear at 3+
 One independent API call per item, temperature 0, randomised presentation order
 per judge. The rater is registered in `raters.json` automatically.
 
-**Add a human rating pass.**
+**Add a human rating pass.** Given how far apart the judges are, this is now the
+most valuable missing piece — it is the only thing that says which judge is
+closer to right rather than merely whether two of them agree.
 
 ```bash
 python src/human_sheet.py --make                 # -> results/human_rating_sheet.csv
@@ -110,7 +120,9 @@ unchanged.
   dimensions here, and the disagreement is diagnostic rather than noise — see
   finding 4 in `METHODOLOGY.md`.
 - **The gold references were authored for this study and have not been reviewed
-  by a licensed attorney.** See limitation L6.
+  by a licensed attorney.** See limitation L7.
+- **Sampling is not pinned.** The judge models reject the `temperature`
+  parameter, so re-running will not reproduce these exact ratings. See L3.
 
 Nothing in this repository is legal advice.
 

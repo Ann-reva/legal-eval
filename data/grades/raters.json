@@ -1,23 +1,44 @@
 {
   "G1": {
-    "label": "Opus-class judge",
+    "label": "Opus-class, in-session",
     "model": "claude-opus-5",
-    "execution": "main session (same context that authored the question set and gold references)",
-    "independence": "NOT independent of the item authoring; see METHODOLOGY.md Limitations L1",
-    "role": "model judge"
+    "execution": "main session, all 40 items in one context",
+    "independence": "NOT independent - same context that authored the items and gold references",
+    "role": "model judge (pilot; excluded from headline)",
+    "headline": false
   },
   "G3": {
-    "label": "Haiku-class judge",
+    "label": "Haiku-class, cold subagent",
     "model": "claude-haiku",
     "execution": "cold subagent, fresh context, rubric + items only",
-    "independence": "independent of G1 and of the item authoring; saw no other rater's output",
-    "role": "model judge (low-cost arm; same model family as the system under test - see Limitations L2)"
+    "independence": "independent of every other rater and of item authoring",
+    "role": "model judge (low-cost arm)",
+    "headline": true
   },
   "GH": {
     "label": "Human rater",
     "model": "human",
     "execution": "not yet run",
     "independence": "n/a",
-    "role": "human reference"
+    "role": "human reference",
+    "headline": true
+  },
+  "G2": {
+    "label": "Sonnet-class, API",
+    "model": "claude-sonnet-5",
+    "execution": "API, one independent call per item, extended thinking disabled, own presentation order",
+    "independence": "independent - fresh context per item, no access to other raters or to item authoring",
+    "role": "model judge",
+    "headline": true,
+    "headline_pair": true
+  },
+  "G4": {
+    "label": "Opus-class, API",
+    "model": "claude-opus-5",
+    "execution": "API, one independent call per item, extended thinking disabled, own presentation order",
+    "independence": "independent - fresh context per item, no access to other raters or to item authoring",
+    "role": "model judge",
+    "headline": true,
+    "headline_pair": true
   }
 }

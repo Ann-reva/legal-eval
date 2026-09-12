@@ -61,12 +61,42 @@ def build_prompt(rec, rubric):
 # providers
 # --------------------------------------------------------------------------- #
 
+_ANTHROPIC_SAMPLING = None   # cached: which sampling-parameter shape this model accepts
+
+
 def call_anthropic(model, system, user):
+    """Send one judging request.
+
+    Sampling control has moved around across SDK and model generations, and some
+    current models reject `temperature` outright ("deprecated for this model").
+    Probe once, cache the shape that works, and record in the run log when
+    temperature could not be pinned - that is a fact the write-up has to state
+    rather than a detail to paper over.
+    """
     import anthropic
+    global _ANTHROPIC_SAMPLING
     c = anthropic.Anthropic()
-    r = c.messages.create(model=model, max_tokens=700, temperature=0, system=system,
-                          messages=[{"role": "user", "content": user}])
-    return r.content[0].text
+    base = dict(model=model, max_tokens=1000, system=system,
+                messages=[{"role": "user", "content": user}])
+    shapes = ([_ANTHROPIC_SAMPLING] if _ANTHROPIC_SAMPLING is not None
+              else [{"thinking": {"type": "disabled"}, "temperature": 0},
+                    {"thinking": {"type": "disabled"}},
+                    {"temperature": 0},
+                    {}])
+    last = None
+    for kw in shapes:
+        try:
+            r = c.messages.create(**base, **kw)
+        except (TypeError, anthropic.BadRequestError) as e:
+            last = e
+            continue
+        if _ANTHROPIC_SAMPLING is None:
+            _ANTHROPIC_SAMPLING = kw
+            if "temperature" not in kw:
+                print("  note: this model rejects `temperature`; running at its "
+                      "default sampling. Recorded in the run log.", file=sys.stderr)
+        return "".join(b.text for b in r.content if getattr(b, "type", "") == "text")
+    raise RuntimeError(f"no accepted request shape for {model}: {last}")
 
 
 def call_openai(model, system, user):

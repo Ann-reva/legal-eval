@@ -58,5 +58,10 @@ knowing which of your facts have expiry dates.
 - The gold references have **not** been reviewed by a licensed attorney. See
   limitation L6 in `METHODOLOGY.md`.
 - The `G1` ratings were produced in the same context that authored the items, so
-  they are not independent. See limitation L1. This is a known defect of the
-  pilot run, not of the harness — `src/run_graders.py` exists to remove it.
+  they are not independent. This was the pilot pass; it has since been superseded
+  by two independent API passes (`G2`, `G4`) and is excluded from every headline
+  statistic while being retained on the record. See limitation L1.
+- The judge runs are **not bit-reproducible**: the models used reject the
+  `temperature` parameter. See limitation L3 and `docs/run_log.md`.
+- No human rater has scored the set, so nothing here establishes which judge is
+  closer to correct — only how far apart they are. See limitation L5.

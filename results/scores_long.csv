@@ -5,477 +5,957 @@ CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G1,D3_c
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G1,D4_authority,2
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G1,D5_scope,1
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G1,critical_failure,0
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G2,D1_accuracy,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G2,D2_jurisdiction,2
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G2,D3_completeness,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G2,D4_authority,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G2,D5_scope,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G2,critical_failure,1
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G3,D1_accuracy,1
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G3,D2_jurisdiction,3
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G3,D3_completeness,2
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G3,D4_authority,2
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G3,D5_scope,2
 CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G3,critical_failure,0
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G4,D1_accuracy,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G4,D2_jurisdiction,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G4,D3_completeness,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G4,D4_authority,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G4,D5_scope,1
+CON-01,Commercial contracts (UCC),US - UCC Art. 2 (general),3,A_standard,G4,critical_failure,1
 CON-02,Commercial contracts,US - New York,2,B_terse,G1,D1_accuracy,2
 CON-02,Commercial contracts,US - New York,2,B_terse,G1,D2_jurisdiction,3
 CON-02,Commercial contracts,US - New York,2,B_terse,G1,D3_completeness,1
 CON-02,Commercial contracts,US - New York,2,B_terse,G1,D4_authority,1
 CON-02,Commercial contracts,US - New York,2,B_terse,G1,D5_scope,2
 CON-02,Commercial contracts,US - New York,2,B_terse,G1,critical_failure,0
+CON-02,Commercial contracts,US - New York,2,B_terse,G2,D1_accuracy,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G2,D2_jurisdiction,2
+CON-02,Commercial contracts,US - New York,2,B_terse,G2,D3_completeness,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G2,D4_authority,0
+CON-02,Commercial contracts,US - New York,2,B_terse,G2,D5_scope,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G2,critical_failure,1
 CON-02,Commercial contracts,US - New York,2,B_terse,G3,D1_accuracy,2
 CON-02,Commercial contracts,US - New York,2,B_terse,G3,D2_jurisdiction,3
 CON-02,Commercial contracts,US - New York,2,B_terse,G3,D3_completeness,2
 CON-02,Commercial contracts,US - New York,2,B_terse,G3,D4_authority,2
 CON-02,Commercial contracts,US - New York,2,B_terse,G3,D5_scope,3
 CON-02,Commercial contracts,US - New York,2,B_terse,G3,critical_failure,0
+CON-02,Commercial contracts,US - New York,2,B_terse,G4,D1_accuracy,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G4,D2_jurisdiction,2
+CON-02,Commercial contracts,US - New York,2,B_terse,G4,D3_completeness,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G4,D4_authority,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G4,D5_scope,1
+CON-02,Commercial contracts,US - New York,2,B_terse,G4,critical_failure,0
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G1,D1_accuracy,1
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G1,D2_jurisdiction,2
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G1,D3_completeness,1
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G1,D4_authority,1
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G1,D5_scope,1
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G1,critical_failure,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G2,D1_accuracy,0
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G2,D2_jurisdiction,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G2,D3_completeness,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G2,D4_authority,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G2,D5_scope,0
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G2,critical_failure,1
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G3,D1_accuracy,3
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G3,D2_jurisdiction,3
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G3,D3_completeness,3
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G3,D4_authority,2
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G3,D5_scope,3
 CON-03,Commercial contracts,US - multi-state,3,A_standard,G3,critical_failure,0
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G4,D1_accuracy,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G4,D2_jurisdiction,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G4,D3_completeness,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G4,D4_authority,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G4,D5_scope,1
+CON-03,Commercial contracts,US - multi-state,3,A_standard,G4,critical_failure,1
 CON-04,Commercial contracts,US - general,2,B_terse,G1,D1_accuracy,3
 CON-04,Commercial contracts,US - general,2,B_terse,G1,D2_jurisdiction,2
 CON-04,Commercial contracts,US - general,2,B_terse,G1,D3_completeness,1
 CON-04,Commercial contracts,US - general,2,B_terse,G1,D4_authority,3
 CON-04,Commercial contracts,US - general,2,B_terse,G1,D5_scope,2
 CON-04,Commercial contracts,US - general,2,B_terse,G1,critical_failure,0
+CON-04,Commercial contracts,US - general,2,B_terse,G2,D1_accuracy,2
+CON-04,Commercial contracts,US - general,2,B_terse,G2,D2_jurisdiction,2
+CON-04,Commercial contracts,US - general,2,B_terse,G2,D3_completeness,1
+CON-04,Commercial contracts,US - general,2,B_terse,G2,D4_authority,1
+CON-04,Commercial contracts,US - general,2,B_terse,G2,D5_scope,2
+CON-04,Commercial contracts,US - general,2,B_terse,G2,critical_failure,0
 CON-04,Commercial contracts,US - general,2,B_terse,G3,D1_accuracy,3
 CON-04,Commercial contracts,US - general,2,B_terse,G3,D2_jurisdiction,3
 CON-04,Commercial contracts,US - general,2,B_terse,G3,D3_completeness,2
 CON-04,Commercial contracts,US - general,2,B_terse,G3,D4_authority,2
 CON-04,Commercial contracts,US - general,2,B_terse,G3,D5_scope,2
 CON-04,Commercial contracts,US - general,2,B_terse,G3,critical_failure,0
+CON-04,Commercial contracts,US - general,2,B_terse,G4,D1_accuracy,2
+CON-04,Commercial contracts,US - general,2,B_terse,G4,D2_jurisdiction,2
+CON-04,Commercial contracts,US - general,2,B_terse,G4,D3_completeness,1
+CON-04,Commercial contracts,US - general,2,B_terse,G4,D4_authority,1
+CON-04,Commercial contracts,US - general,2,B_terse,G4,D5_scope,1
+CON-04,Commercial contracts,US - general,2,B_terse,G4,critical_failure,0
 CON-05,Commercial contracts,US - New York,3,A_standard,G1,D1_accuracy,1
 CON-05,Commercial contracts,US - New York,3,A_standard,G1,D2_jurisdiction,3
 CON-05,Commercial contracts,US - New York,3,A_standard,G1,D3_completeness,1
 CON-05,Commercial contracts,US - New York,3,A_standard,G1,D4_authority,1
 CON-05,Commercial contracts,US - New York,3,A_standard,G1,D5_scope,1
 CON-05,Commercial contracts,US - New York,3,A_standard,G1,critical_failure,0
+CON-05,Commercial contracts,US - New York,3,A_standard,G2,D1_accuracy,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G2,D2_jurisdiction,2
+CON-05,Commercial contracts,US - New York,3,A_standard,G2,D3_completeness,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G2,D4_authority,0
+CON-05,Commercial contracts,US - New York,3,A_standard,G2,D5_scope,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G2,critical_failure,1
 CON-05,Commercial contracts,US - New York,3,A_standard,G3,D1_accuracy,3
 CON-05,Commercial contracts,US - New York,3,A_standard,G3,D2_jurisdiction,3
 CON-05,Commercial contracts,US - New York,3,A_standard,G3,D3_completeness,3
 CON-05,Commercial contracts,US - New York,3,A_standard,G3,D4_authority,2
 CON-05,Commercial contracts,US - New York,3,A_standard,G3,D5_scope,3
 CON-05,Commercial contracts,US - New York,3,A_standard,G3,critical_failure,0
+CON-05,Commercial contracts,US - New York,3,A_standard,G4,D1_accuracy,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G4,D2_jurisdiction,2
+CON-05,Commercial contracts,US - New York,3,A_standard,G4,D3_completeness,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G4,D4_authority,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G4,D5_scope,1
+CON-05,Commercial contracts,US - New York,3,A_standard,G4,critical_failure,1
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G1,D1_accuracy,2
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G1,D2_jurisdiction,3
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G1,D3_completeness,2
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G1,D4_authority,1
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G1,D5_scope,2
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G1,critical_failure,0
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G2,D1_accuracy,1
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G2,D2_jurisdiction,2
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G2,D3_completeness,1
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G2,D4_authority,0
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G2,D5_scope,1
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G2,critical_failure,1
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G3,D1_accuracy,3
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G3,D2_jurisdiction,3
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G3,D3_completeness,2
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G3,D4_authority,1
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G3,D5_scope,3
 CON-06,Corporate / M&A,US - Delaware,3,B_terse,G3,critical_failure,0
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G4,D1_accuracy,2
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G4,D2_jurisdiction,2
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G4,D3_completeness,1
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G4,D4_authority,1
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G4,D5_scope,1
+CON-06,Corporate / M&A,US - Delaware,3,B_terse,G4,critical_failure,0
 CON-07,Commercial contracts,US - general,2,A_standard,G1,D1_accuracy,1
 CON-07,Commercial contracts,US - general,2,A_standard,G1,D2_jurisdiction,2
 CON-07,Commercial contracts,US - general,2,A_standard,G1,D3_completeness,2
 CON-07,Commercial contracts,US - general,2,A_standard,G1,D4_authority,3
 CON-07,Commercial contracts,US - general,2,A_standard,G1,D5_scope,1
 CON-07,Commercial contracts,US - general,2,A_standard,G1,critical_failure,0
+CON-07,Commercial contracts,US - general,2,A_standard,G2,D1_accuracy,1
+CON-07,Commercial contracts,US - general,2,A_standard,G2,D2_jurisdiction,2
+CON-07,Commercial contracts,US - general,2,A_standard,G2,D3_completeness,1
+CON-07,Commercial contracts,US - general,2,A_standard,G2,D4_authority,2
+CON-07,Commercial contracts,US - general,2,A_standard,G2,D5_scope,1
+CON-07,Commercial contracts,US - general,2,A_standard,G2,critical_failure,0
 CON-07,Commercial contracts,US - general,2,A_standard,G3,D1_accuracy,3
 CON-07,Commercial contracts,US - general,2,A_standard,G3,D2_jurisdiction,3
 CON-07,Commercial contracts,US - general,2,A_standard,G3,D3_completeness,2
 CON-07,Commercial contracts,US - general,2,A_standard,G3,D4_authority,2
 CON-07,Commercial contracts,US - general,2,A_standard,G3,D5_scope,3
 CON-07,Commercial contracts,US - general,2,A_standard,G3,critical_failure,0
+CON-07,Commercial contracts,US - general,2,A_standard,G4,D1_accuracy,1
+CON-07,Commercial contracts,US - general,2,A_standard,G4,D2_jurisdiction,1
+CON-07,Commercial contracts,US - general,2,A_standard,G4,D3_completeness,1
+CON-07,Commercial contracts,US - general,2,A_standard,G4,D4_authority,1
+CON-07,Commercial contracts,US - general,2,A_standard,G4,D5_scope,0
+CON-07,Commercial contracts,US - general,2,A_standard,G4,critical_failure,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G1,D1_accuracy,3
 CON-08,Commercial contracts,England & Wales,2,B_terse,G1,D2_jurisdiction,3
 CON-08,Commercial contracts,England & Wales,2,B_terse,G1,D3_completeness,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G1,D4_authority,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G1,D5_scope,2
 CON-08,Commercial contracts,England & Wales,2,B_terse,G1,critical_failure,0
+CON-08,Commercial contracts,England & Wales,2,B_terse,G2,D1_accuracy,2
+CON-08,Commercial contracts,England & Wales,2,B_terse,G2,D2_jurisdiction,2
+CON-08,Commercial contracts,England & Wales,2,B_terse,G2,D3_completeness,1
+CON-08,Commercial contracts,England & Wales,2,B_terse,G2,D4_authority,0
+CON-08,Commercial contracts,England & Wales,2,B_terse,G2,D5_scope,2
+CON-08,Commercial contracts,England & Wales,2,B_terse,G2,critical_failure,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G3,D1_accuracy,3
 CON-08,Commercial contracts,England & Wales,2,B_terse,G3,D2_jurisdiction,3
 CON-08,Commercial contracts,England & Wales,2,B_terse,G3,D3_completeness,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G3,D4_authority,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G3,D5_scope,1
 CON-08,Commercial contracts,England & Wales,2,B_terse,G3,critical_failure,0
+CON-08,Commercial contracts,England & Wales,2,B_terse,G4,D1_accuracy,3
+CON-08,Commercial contracts,England & Wales,2,B_terse,G4,D2_jurisdiction,2
+CON-08,Commercial contracts,England & Wales,2,B_terse,G4,D3_completeness,1
+CON-08,Commercial contracts,England & Wales,2,B_terse,G4,D4_authority,1
+CON-08,Commercial contracts,England & Wales,2,B_terse,G4,D5_scope,1
+CON-08,Commercial contracts,England & Wales,2,B_terse,G4,critical_failure,0
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G1,D1_accuracy,1
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G1,D2_jurisdiction,3
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G1,D3_completeness,1
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G1,D4_authority,2
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G1,D5_scope,1
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G1,critical_failure,1
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G2,D1_accuracy,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G2,D2_jurisdiction,2
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G2,D3_completeness,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G2,D4_authority,1
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G2,D5_scope,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G2,critical_failure,1
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G3,D1_accuracy,3
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G3,D2_jurisdiction,3
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G3,D3_completeness,1
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G3,D4_authority,2
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G3,D5_scope,2
 COR-01,Corporate / M&A,US - Delaware,2,A_standard,G3,critical_failure,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G4,D1_accuracy,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G4,D2_jurisdiction,2
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G4,D3_completeness,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G4,D4_authority,1
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G4,D5_scope,0
+COR-01,Corporate / M&A,US - Delaware,2,A_standard,G4,critical_failure,1
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G1,D1_accuracy,1
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G1,D2_jurisdiction,3
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G1,D3_completeness,1
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G1,D4_authority,1
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G1,D5_scope,2
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G1,critical_failure,0
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G2,D1_accuracy,1
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G2,D2_jurisdiction,2
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G2,D3_completeness,0
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G2,D4_authority,0
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G2,D5_scope,1
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G2,critical_failure,1
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G3,D1_accuracy,2
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G3,D2_jurisdiction,3
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G3,D3_completeness,2
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G3,D4_authority,0
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G3,D5_scope,2
 COR-02,Corporate / M&A,US - Delaware,3,B_terse,G3,critical_failure,0
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G4,D1_accuracy,1
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G4,D2_jurisdiction,2
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G4,D3_completeness,1
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G4,D4_authority,1
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G4,D5_scope,1
+COR-02,Corporate / M&A,US - Delaware,3,B_terse,G4,critical_failure,1
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G1,D1_accuracy,1
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G1,D2_jurisdiction,3
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G1,D3_completeness,1
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G1,D4_authority,2
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G1,D5_scope,2
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G1,critical_failure,0
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G2,D1_accuracy,0
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G2,D2_jurisdiction,2
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G2,D3_completeness,0
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G2,D4_authority,0
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G2,D5_scope,1
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G2,critical_failure,1
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G3,D1_accuracy,1
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G3,D2_jurisdiction,3
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G3,D3_completeness,1
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G3,D4_authority,0
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G3,D5_scope,2
 COR-03,Corporate / M&A,US - Delaware,2,A_standard,G3,critical_failure,1
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G4,D1_accuracy,1
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G4,D2_jurisdiction,2
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G4,D3_completeness,1
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G4,D4_authority,1
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G4,D5_scope,1
+COR-03,Corporate / M&A,US - Delaware,2,A_standard,G4,critical_failure,0
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G1,D1_accuracy,3
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G1,D2_jurisdiction,3
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G1,D3_completeness,2
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G1,D4_authority,1
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G1,D5_scope,2
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G1,critical_failure,0
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G2,D1_accuracy,2
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G2,D2_jurisdiction,2
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G2,D3_completeness,1
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G2,D4_authority,0
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G2,D5_scope,2
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G2,critical_failure,1
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G3,D1_accuracy,3
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G3,D2_jurisdiction,3
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G3,D3_completeness,2
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G3,D4_authority,1
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G3,D5_scope,3
 COR-04,Corporate / M&A,US - Delaware,3,B_terse,G3,critical_failure,0
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G4,D1_accuracy,2
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G4,D2_jurisdiction,2
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G4,D3_completeness,1
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G4,D4_authority,1
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G4,D5_scope,2
+COR-04,Corporate / M&A,US - Delaware,3,B_terse,G4,critical_failure,0
 COR-05,Corporate / tax,US - federal,3,A_standard,G1,D1_accuracy,1
 COR-05,Corporate / tax,US - federal,3,A_standard,G1,D2_jurisdiction,2
 COR-05,Corporate / tax,US - federal,3,A_standard,G1,D3_completeness,1
 COR-05,Corporate / tax,US - federal,3,A_standard,G1,D4_authority,1
 COR-05,Corporate / tax,US - federal,3,A_standard,G1,D5_scope,2
 COR-05,Corporate / tax,US - federal,3,A_standard,G1,critical_failure,0
+COR-05,Corporate / tax,US - federal,3,A_standard,G2,D1_accuracy,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G2,D2_jurisdiction,2
+COR-05,Corporate / tax,US - federal,3,A_standard,G2,D3_completeness,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G2,D4_authority,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G2,D5_scope,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G2,critical_failure,1
 COR-05,Corporate / tax,US - federal,3,A_standard,G3,D1_accuracy,2
 COR-05,Corporate / tax,US - federal,3,A_standard,G3,D2_jurisdiction,3
 COR-05,Corporate / tax,US - federal,3,A_standard,G3,D3_completeness,1
 COR-05,Corporate / tax,US - federal,3,A_standard,G3,D4_authority,2
 COR-05,Corporate / tax,US - federal,3,A_standard,G3,D5_scope,2
 COR-05,Corporate / tax,US - federal,3,A_standard,G3,critical_failure,0
+COR-05,Corporate / tax,US - federal,3,A_standard,G4,D1_accuracy,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G4,D2_jurisdiction,2
+COR-05,Corporate / tax,US - federal,3,A_standard,G4,D3_completeness,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G4,D4_authority,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G4,D5_scope,1
+COR-05,Corporate / tax,US - federal,3,A_standard,G4,critical_failure,0
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G1,D1_accuracy,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G1,D2_jurisdiction,2
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G1,D3_completeness,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G1,D4_authority,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G1,D5_scope,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G1,critical_failure,1
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G2,D1_accuracy,0
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G2,D2_jurisdiction,2
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G2,D3_completeness,0
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G2,D4_authority,1
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G2,D5_scope,0
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G2,critical_failure,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G3,D1_accuracy,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G3,D2_jurisdiction,3
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G3,D3_completeness,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G3,D4_authority,1
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G3,D5_scope,2
 COR-06,Antitrust / M&A,US - federal,2,B_terse,G3,critical_failure,0
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G4,D1_accuracy,1
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G4,D2_jurisdiction,2
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G4,D3_completeness,1
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G4,D4_authority,1
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G4,D5_scope,0
+COR-06,Antitrust / M&A,US - federal,2,B_terse,G4,critical_failure,1
 EMP-01,Employment,US - federal + state,3,A_standard,G1,D1_accuracy,2
 EMP-01,Employment,US - federal + state,3,A_standard,G1,D2_jurisdiction,2
 EMP-01,Employment,US - federal + state,3,A_standard,G1,D3_completeness,2
 EMP-01,Employment,US - federal + state,3,A_standard,G1,D4_authority,2
 EMP-01,Employment,US - federal + state,3,A_standard,G1,D5_scope,3
 EMP-01,Employment,US - federal + state,3,A_standard,G1,critical_failure,0
+EMP-01,Employment,US - federal + state,3,A_standard,G2,D1_accuracy,1
+EMP-01,Employment,US - federal + state,3,A_standard,G2,D2_jurisdiction,1
+EMP-01,Employment,US - federal + state,3,A_standard,G2,D3_completeness,1
+EMP-01,Employment,US - federal + state,3,A_standard,G2,D4_authority,1
+EMP-01,Employment,US - federal + state,3,A_standard,G2,D5_scope,1
+EMP-01,Employment,US - federal + state,3,A_standard,G2,critical_failure,1
 EMP-01,Employment,US - federal + state,3,A_standard,G3,D1_accuracy,3
 EMP-01,Employment,US - federal + state,3,A_standard,G3,D2_jurisdiction,3
 EMP-01,Employment,US - federal + state,3,A_standard,G3,D3_completeness,3
 EMP-01,Employment,US - federal + state,3,A_standard,G3,D4_authority,2
 EMP-01,Employment,US - federal + state,3,A_standard,G3,D5_scope,3
 EMP-01,Employment,US - federal + state,3,A_standard,G3,critical_failure,0
+EMP-01,Employment,US - federal + state,3,A_standard,G4,D1_accuracy,2
+EMP-01,Employment,US - federal + state,3,A_standard,G4,D2_jurisdiction,1
+EMP-01,Employment,US - federal + state,3,A_standard,G4,D3_completeness,2
+EMP-01,Employment,US - federal + state,3,A_standard,G4,D4_authority,1
+EMP-01,Employment,US - federal + state,3,A_standard,G4,D5_scope,2
+EMP-01,Employment,US - federal + state,3,A_standard,G4,critical_failure,0
 EMP-02,Employment,US - California,2,B_terse,G1,D1_accuracy,2
 EMP-02,Employment,US - California,2,B_terse,G1,D2_jurisdiction,3
 EMP-02,Employment,US - California,2,B_terse,G1,D3_completeness,1
 EMP-02,Employment,US - California,2,B_terse,G1,D4_authority,2
 EMP-02,Employment,US - California,2,B_terse,G1,D5_scope,3
 EMP-02,Employment,US - California,2,B_terse,G1,critical_failure,0
+EMP-02,Employment,US - California,2,B_terse,G2,D1_accuracy,2
+EMP-02,Employment,US - California,2,B_terse,G2,D2_jurisdiction,2
+EMP-02,Employment,US - California,2,B_terse,G2,D3_completeness,1
+EMP-02,Employment,US - California,2,B_terse,G2,D4_authority,1
+EMP-02,Employment,US - California,2,B_terse,G2,D5_scope,1
+EMP-02,Employment,US - California,2,B_terse,G2,critical_failure,0
 EMP-02,Employment,US - California,2,B_terse,G3,D1_accuracy,3
 EMP-02,Employment,US - California,2,B_terse,G3,D2_jurisdiction,3
 EMP-02,Employment,US - California,2,B_terse,G3,D3_completeness,2
 EMP-02,Employment,US - California,2,B_terse,G3,D4_authority,2
 EMP-02,Employment,US - California,2,B_terse,G3,D5_scope,3
 EMP-02,Employment,US - California,2,B_terse,G3,critical_failure,0
+EMP-02,Employment,US - California,2,B_terse,G4,D1_accuracy,2
+EMP-02,Employment,US - California,2,B_terse,G4,D2_jurisdiction,2
+EMP-02,Employment,US - California,2,B_terse,G4,D3_completeness,1
+EMP-02,Employment,US - California,2,B_terse,G4,D4_authority,1
+EMP-02,Employment,US - California,2,B_terse,G4,D5_scope,1
+EMP-02,Employment,US - California,2,B_terse,G4,critical_failure,0
 EMP-03,Employment,US - multi-state,2,A_standard,G1,D1_accuracy,3
 EMP-03,Employment,US - multi-state,2,A_standard,G1,D2_jurisdiction,3
 EMP-03,Employment,US - multi-state,2,A_standard,G1,D3_completeness,3
 EMP-03,Employment,US - multi-state,2,A_standard,G1,D4_authority,2
 EMP-03,Employment,US - multi-state,2,A_standard,G1,D5_scope,3
 EMP-03,Employment,US - multi-state,2,A_standard,G1,critical_failure,0
+EMP-03,Employment,US - multi-state,2,A_standard,G2,D1_accuracy,3
+EMP-03,Employment,US - multi-state,2,A_standard,G2,D2_jurisdiction,2
+EMP-03,Employment,US - multi-state,2,A_standard,G2,D3_completeness,3
+EMP-03,Employment,US - multi-state,2,A_standard,G2,D4_authority,1
+EMP-03,Employment,US - multi-state,2,A_standard,G2,D5_scope,3
+EMP-03,Employment,US - multi-state,2,A_standard,G2,critical_failure,0
 EMP-03,Employment,US - multi-state,2,A_standard,G3,D1_accuracy,3
 EMP-03,Employment,US - multi-state,2,A_standard,G3,D2_jurisdiction,3
 EMP-03,Employment,US - multi-state,2,A_standard,G3,D3_completeness,3
 EMP-03,Employment,US - multi-state,2,A_standard,G3,D4_authority,2
 EMP-03,Employment,US - multi-state,2,A_standard,G3,D5_scope,3
 EMP-03,Employment,US - multi-state,2,A_standard,G3,critical_failure,0
+EMP-03,Employment,US - multi-state,2,A_standard,G4,D1_accuracy,2
+EMP-03,Employment,US - multi-state,2,A_standard,G4,D2_jurisdiction,3
+EMP-03,Employment,US - multi-state,2,A_standard,G4,D3_completeness,3
+EMP-03,Employment,US - multi-state,2,A_standard,G4,D4_authority,1
+EMP-03,Employment,US - multi-state,2,A_standard,G4,D5_scope,3
+EMP-03,Employment,US - multi-state,2,A_standard,G4,critical_failure,0
 EMP-04,Employment,US - federal,2,B_terse,G1,D1_accuracy,3
 EMP-04,Employment,US - federal,2,B_terse,G1,D2_jurisdiction,2
 EMP-04,Employment,US - federal,2,B_terse,G1,D3_completeness,2
 EMP-04,Employment,US - federal,2,B_terse,G1,D4_authority,1
 EMP-04,Employment,US - federal,2,B_terse,G1,D5_scope,3
 EMP-04,Employment,US - federal,2,B_terse,G1,critical_failure,0
+EMP-04,Employment,US - federal,2,B_terse,G2,D1_accuracy,2
+EMP-04,Employment,US - federal,2,B_terse,G2,D2_jurisdiction,1
+EMP-04,Employment,US - federal,2,B_terse,G2,D3_completeness,1
+EMP-04,Employment,US - federal,2,B_terse,G2,D4_authority,0
+EMP-04,Employment,US - federal,2,B_terse,G2,D5_scope,2
+EMP-04,Employment,US - federal,2,B_terse,G2,critical_failure,1
 EMP-04,Employment,US - federal,2,B_terse,G3,D1_accuracy,3
 EMP-04,Employment,US - federal,2,B_terse,G3,D2_jurisdiction,3
 EMP-04,Employment,US - federal,2,B_terse,G3,D3_completeness,2
 EMP-04,Employment,US - federal,2,B_terse,G3,D4_authority,0
 EMP-04,Employment,US - federal,2,B_terse,G3,D5_scope,2
 EMP-04,Employment,US - federal,2,B_terse,G3,critical_failure,0
+EMP-04,Employment,US - federal,2,B_terse,G4,D1_accuracy,3
+EMP-04,Employment,US - federal,2,B_terse,G4,D2_jurisdiction,2
+EMP-04,Employment,US - federal,2,B_terse,G4,D3_completeness,1
+EMP-04,Employment,US - federal,2,B_terse,G4,D4_authority,1
+EMP-04,Employment,US - federal,2,B_terse,G4,D5_scope,2
+EMP-04,Employment,US - federal,2,B_terse,G4,critical_failure,0
 EMP-05,Employment,US - federal + California,3,A_standard,G1,D1_accuracy,1
 EMP-05,Employment,US - federal + California,3,A_standard,G1,D2_jurisdiction,2
 EMP-05,Employment,US - federal + California,3,A_standard,G1,D3_completeness,2
 EMP-05,Employment,US - federal + California,3,A_standard,G1,D4_authority,0
 EMP-05,Employment,US - federal + California,3,A_standard,G1,D5_scope,2
 EMP-05,Employment,US - federal + California,3,A_standard,G1,critical_failure,1
+EMP-05,Employment,US - federal + California,3,A_standard,G2,D1_accuracy,1
+EMP-05,Employment,US - federal + California,3,A_standard,G2,D2_jurisdiction,2
+EMP-05,Employment,US - federal + California,3,A_standard,G2,D3_completeness,1
+EMP-05,Employment,US - federal + California,3,A_standard,G2,D4_authority,0
+EMP-05,Employment,US - federal + California,3,A_standard,G2,D5_scope,1
+EMP-05,Employment,US - federal + California,3,A_standard,G2,critical_failure,1
 EMP-05,Employment,US - federal + California,3,A_standard,G3,D1_accuracy,3
 EMP-05,Employment,US - federal + California,3,A_standard,G3,D2_jurisdiction,3
 EMP-05,Employment,US - federal + California,3,A_standard,G3,D3_completeness,2
 EMP-05,Employment,US - federal + California,3,A_standard,G3,D4_authority,2
 EMP-05,Employment,US - federal + California,3,A_standard,G3,D5_scope,3
 EMP-05,Employment,US - federal + California,3,A_standard,G3,critical_failure,0
+EMP-05,Employment,US - federal + California,3,A_standard,G4,D1_accuracy,1
+EMP-05,Employment,US - federal + California,3,A_standard,G4,D2_jurisdiction,2
+EMP-05,Employment,US - federal + California,3,A_standard,G4,D3_completeness,1
+EMP-05,Employment,US - federal + California,3,A_standard,G4,D4_authority,0
+EMP-05,Employment,US - federal + California,3,A_standard,G4,D5_scope,2
+EMP-05,Employment,US - federal + California,3,A_standard,G4,critical_failure,1
 EMP-06,Employment,US - California + federal,3,B_terse,G1,D1_accuracy,2
 EMP-06,Employment,US - California + federal,3,B_terse,G1,D2_jurisdiction,3
 EMP-06,Employment,US - California + federal,3,B_terse,G1,D3_completeness,2
 EMP-06,Employment,US - California + federal,3,B_terse,G1,D4_authority,1
 EMP-06,Employment,US - California + federal,3,B_terse,G1,D5_scope,3
 EMP-06,Employment,US - California + federal,3,B_terse,G1,critical_failure,0
+EMP-06,Employment,US - California + federal,3,B_terse,G2,D1_accuracy,1
+EMP-06,Employment,US - California + federal,3,B_terse,G2,D2_jurisdiction,2
+EMP-06,Employment,US - California + federal,3,B_terse,G2,D3_completeness,1
+EMP-06,Employment,US - California + federal,3,B_terse,G2,D4_authority,0
+EMP-06,Employment,US - California + federal,3,B_terse,G2,D5_scope,1
+EMP-06,Employment,US - California + federal,3,B_terse,G2,critical_failure,1
 EMP-06,Employment,US - California + federal,3,B_terse,G3,D1_accuracy,2
 EMP-06,Employment,US - California + federal,3,B_terse,G3,D2_jurisdiction,3
 EMP-06,Employment,US - California + federal,3,B_terse,G3,D3_completeness,1
 EMP-06,Employment,US - California + federal,3,B_terse,G3,D4_authority,1
 EMP-06,Employment,US - California + federal,3,B_terse,G3,D5_scope,2
 EMP-06,Employment,US - California + federal,3,B_terse,G3,critical_failure,0
+EMP-06,Employment,US - California + federal,3,B_terse,G4,D1_accuracy,2
+EMP-06,Employment,US - California + federal,3,B_terse,G4,D2_jurisdiction,2
+EMP-06,Employment,US - California + federal,3,B_terse,G4,D3_completeness,1
+EMP-06,Employment,US - California + federal,3,B_terse,G4,D4_authority,1
+EMP-06,Employment,US - California + federal,3,B_terse,G4,D5_scope,2
+EMP-06,Employment,US - California + federal,3,B_terse,G4,critical_failure,0
 LIT-01,Litigation procedure,US - federal,2,A_standard,G1,D1_accuracy,2
 LIT-01,Litigation procedure,US - federal,2,A_standard,G1,D2_jurisdiction,2
 LIT-01,Litigation procedure,US - federal,2,A_standard,G1,D3_completeness,2
 LIT-01,Litigation procedure,US - federal,2,A_standard,G1,D4_authority,2
 LIT-01,Litigation procedure,US - federal,2,A_standard,G1,D5_scope,2
 LIT-01,Litigation procedure,US - federal,2,A_standard,G1,critical_failure,0
+LIT-01,Litigation procedure,US - federal,2,A_standard,G2,D1_accuracy,2
+LIT-01,Litigation procedure,US - federal,2,A_standard,G2,D2_jurisdiction,3
+LIT-01,Litigation procedure,US - federal,2,A_standard,G2,D3_completeness,1
+LIT-01,Litigation procedure,US - federal,2,A_standard,G2,D4_authority,2
+LIT-01,Litigation procedure,US - federal,2,A_standard,G2,D5_scope,2
+LIT-01,Litigation procedure,US - federal,2,A_standard,G2,critical_failure,0
 LIT-01,Litigation procedure,US - federal,2,A_standard,G3,D1_accuracy,3
 LIT-01,Litigation procedure,US - federal,2,A_standard,G3,D2_jurisdiction,3
 LIT-01,Litigation procedure,US - federal,2,A_standard,G3,D3_completeness,3
 LIT-01,Litigation procedure,US - federal,2,A_standard,G3,D4_authority,2
 LIT-01,Litigation procedure,US - federal,2,A_standard,G3,D5_scope,3
 LIT-01,Litigation procedure,US - federal,2,A_standard,G3,critical_failure,0
+LIT-01,Litigation procedure,US - federal,2,A_standard,G4,D1_accuracy,1
+LIT-01,Litigation procedure,US - federal,2,A_standard,G4,D2_jurisdiction,2
+LIT-01,Litigation procedure,US - federal,2,A_standard,G4,D3_completeness,1
+LIT-01,Litigation procedure,US - federal,2,A_standard,G4,D4_authority,2
+LIT-01,Litigation procedure,US - federal,2,A_standard,G4,D5_scope,1
+LIT-01,Litigation procedure,US - federal,2,A_standard,G4,critical_failure,0
 LIT-02,Litigation procedure,US - federal,2,B_terse,G1,D1_accuracy,1
 LIT-02,Litigation procedure,US - federal,2,B_terse,G1,D2_jurisdiction,2
 LIT-02,Litigation procedure,US - federal,2,B_terse,G1,D3_completeness,1
 LIT-02,Litigation procedure,US - federal,2,B_terse,G1,D4_authority,0
 LIT-02,Litigation procedure,US - federal,2,B_terse,G1,D5_scope,1
 LIT-02,Litigation procedure,US - federal,2,B_terse,G1,critical_failure,1
+LIT-02,Litigation procedure,US - federal,2,B_terse,G2,D1_accuracy,0
+LIT-02,Litigation procedure,US - federal,2,B_terse,G2,D2_jurisdiction,2
+LIT-02,Litigation procedure,US - federal,2,B_terse,G2,D3_completeness,1
+LIT-02,Litigation procedure,US - federal,2,B_terse,G2,D4_authority,0
+LIT-02,Litigation procedure,US - federal,2,B_terse,G2,D5_scope,1
+LIT-02,Litigation procedure,US - federal,2,B_terse,G2,critical_failure,1
 LIT-02,Litigation procedure,US - federal,2,B_terse,G3,D1_accuracy,1
 LIT-02,Litigation procedure,US - federal,2,B_terse,G3,D2_jurisdiction,3
 LIT-02,Litigation procedure,US - federal,2,B_terse,G3,D3_completeness,2
 LIT-02,Litigation procedure,US - federal,2,B_terse,G3,D4_authority,1
 LIT-02,Litigation procedure,US - federal,2,B_terse,G3,D5_scope,2
 LIT-02,Litigation procedure,US - federal,2,B_terse,G3,critical_failure,0
+LIT-02,Litigation procedure,US - federal,2,B_terse,G4,D1_accuracy,0
+LIT-02,Litigation procedure,US - federal,2,B_terse,G4,D2_jurisdiction,2
+LIT-02,Litigation procedure,US - federal,2,B_terse,G4,D3_completeness,1
+LIT-02,Litigation procedure,US - federal,2,B_terse,G4,D4_authority,0
+LIT-02,Litigation procedure,US - federal,2,B_terse,G4,D5_scope,1
+LIT-02,Litigation procedure,US - federal,2,B_terse,G4,critical_failure,1
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G1,D1_accuracy,0
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G1,D2_jurisdiction,2
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G1,D3_completeness,0
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G1,D4_authority,1
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G1,D5_scope,1
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G1,critical_failure,1
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G2,D1_accuracy,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G2,D2_jurisdiction,2
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G2,D3_completeness,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G2,D4_authority,1
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G2,D5_scope,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G2,critical_failure,1
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G3,D1_accuracy,2
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G3,D2_jurisdiction,3
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G3,D3_completeness,1
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G3,D4_authority,1
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G3,D5_scope,2
 LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G3,critical_failure,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G4,D1_accuracy,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G4,D2_jurisdiction,1
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G4,D3_completeness,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G4,D4_authority,1
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G4,D5_scope,0
+LIT-03,Litigation procedure,US - federal / constitutional,3,A_standard,G4,critical_failure,1
 LIT-04,Litigation procedure,US - federal,3,B_terse,G1,D1_accuracy,0
 LIT-04,Litigation procedure,US - federal,3,B_terse,G1,D2_jurisdiction,2
 LIT-04,Litigation procedure,US - federal,3,B_terse,G1,D3_completeness,0
 LIT-04,Litigation procedure,US - federal,3,B_terse,G1,D4_authority,1
 LIT-04,Litigation procedure,US - federal,3,B_terse,G1,D5_scope,1
 LIT-04,Litigation procedure,US - federal,3,B_terse,G1,critical_failure,1
+LIT-04,Litigation procedure,US - federal,3,B_terse,G2,D1_accuracy,0
+LIT-04,Litigation procedure,US - federal,3,B_terse,G2,D2_jurisdiction,2
+LIT-04,Litigation procedure,US - federal,3,B_terse,G2,D3_completeness,0
+LIT-04,Litigation procedure,US - federal,3,B_terse,G2,D4_authority,1
+LIT-04,Litigation procedure,US - federal,3,B_terse,G2,D5_scope,0
+LIT-04,Litigation procedure,US - federal,3,B_terse,G2,critical_failure,1
 LIT-04,Litigation procedure,US - federal,3,B_terse,G3,D1_accuracy,3
 LIT-04,Litigation procedure,US - federal,3,B_terse,G3,D2_jurisdiction,3
 LIT-04,Litigation procedure,US - federal,3,B_terse,G3,D3_completeness,2
 LIT-04,Litigation procedure,US - federal,3,B_terse,G3,D4_authority,0
 LIT-04,Litigation procedure,US - federal,3,B_terse,G3,D5_scope,2
 LIT-04,Litigation procedure,US - federal,3,B_terse,G3,critical_failure,0
+LIT-04,Litigation procedure,US - federal,3,B_terse,G4,D1_accuracy,0
+LIT-04,Litigation procedure,US - federal,3,B_terse,G4,D2_jurisdiction,2
+LIT-04,Litigation procedure,US - federal,3,B_terse,G4,D3_completeness,0
+LIT-04,Litigation procedure,US - federal,3,B_terse,G4,D4_authority,1
+LIT-04,Litigation procedure,US - federal,3,B_terse,G4,D5_scope,1
+LIT-04,Litigation procedure,US - federal,3,B_terse,G4,critical_failure,1
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G1,D1_accuracy,1
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G1,D2_jurisdiction,2
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G1,D3_completeness,1
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G1,D4_authority,1
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G1,D5_scope,2
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G1,critical_failure,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G2,D1_accuracy,0
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G2,D2_jurisdiction,2
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G2,D3_completeness,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G2,D4_authority,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G2,D5_scope,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G2,critical_failure,1
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G3,D1_accuracy,2
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G3,D2_jurisdiction,3
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G3,D3_completeness,3
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G3,D4_authority,2
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G3,D5_scope,3
 LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G3,critical_failure,0
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G4,D1_accuracy,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G4,D2_jurisdiction,2
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G4,D3_completeness,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G4,D4_authority,1
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G4,D5_scope,2
+LIT-05,Litigation / e-discovery,US - federal,3,A_standard,G4,critical_failure,1
 LIT-06,Privilege,US - federal,3,B_terse,G1,D1_accuracy,0
 LIT-06,Privilege,US - federal,3,B_terse,G1,D2_jurisdiction,2
 LIT-06,Privilege,US - federal,3,B_terse,G1,D3_completeness,1
 LIT-06,Privilege,US - federal,3,B_terse,G1,D4_authority,1
 LIT-06,Privilege,US - federal,3,B_terse,G1,D5_scope,1
 LIT-06,Privilege,US - federal,3,B_terse,G1,critical_failure,1
+LIT-06,Privilege,US - federal,3,B_terse,G2,D1_accuracy,0
+LIT-06,Privilege,US - federal,3,B_terse,G2,D2_jurisdiction,2
+LIT-06,Privilege,US - federal,3,B_terse,G2,D3_completeness,1
+LIT-06,Privilege,US - federal,3,B_terse,G2,D4_authority,0
+LIT-06,Privilege,US - federal,3,B_terse,G2,D5_scope,1
+LIT-06,Privilege,US - federal,3,B_terse,G2,critical_failure,1
 LIT-06,Privilege,US - federal,3,B_terse,G3,D1_accuracy,3
 LIT-06,Privilege,US - federal,3,B_terse,G3,D2_jurisdiction,3
 LIT-06,Privilege,US - federal,3,B_terse,G3,D3_completeness,2
 LIT-06,Privilege,US - federal,3,B_terse,G3,D4_authority,0
 LIT-06,Privilege,US - federal,3,B_terse,G3,D5_scope,2
 LIT-06,Privilege,US - federal,3,B_terse,G3,critical_failure,0
+LIT-06,Privilege,US - federal,3,B_terse,G4,D1_accuracy,1
+LIT-06,Privilege,US - federal,3,B_terse,G4,D2_jurisdiction,2
+LIT-06,Privilege,US - federal,3,B_terse,G4,D3_completeness,1
+LIT-06,Privilege,US - federal,3,B_terse,G4,D4_authority,1
+LIT-06,Privilege,US - federal,3,B_terse,G4,D5_scope,1
+LIT-06,Privilege,US - federal,3,B_terse,G4,critical_failure,1
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G1,D1_accuracy,3
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G1,D2_jurisdiction,3
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G1,D3_completeness,2
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G1,D4_authority,1
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G1,D5_scope,3
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G1,critical_failure,0
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G2,D1_accuracy,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G2,D2_jurisdiction,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G2,D3_completeness,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G2,D4_authority,1
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G2,D5_scope,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G2,critical_failure,0
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G3,D1_accuracy,3
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G3,D2_jurisdiction,3
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G3,D3_completeness,2
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G3,D4_authority,2
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G3,D5_scope,3
 PRV-01,Data privacy,EU - GDPR,2,A_standard,G3,critical_failure,0
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G4,D1_accuracy,3
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G4,D2_jurisdiction,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G4,D3_completeness,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G4,D4_authority,1
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G4,D5_scope,2
+PRV-01,Data privacy,EU - GDPR,2,A_standard,G4,critical_failure,0
 PRV-02,Data privacy,US - California,3,B_terse,G1,D1_accuracy,1
 PRV-02,Data privacy,US - California,3,B_terse,G1,D2_jurisdiction,3
 PRV-02,Data privacy,US - California,3,B_terse,G1,D3_completeness,2
 PRV-02,Data privacy,US - California,3,B_terse,G1,D4_authority,0
 PRV-02,Data privacy,US - California,3,B_terse,G1,D5_scope,2
 PRV-02,Data privacy,US - California,3,B_terse,G1,critical_failure,1
+PRV-02,Data privacy,US - California,3,B_terse,G2,D1_accuracy,1
+PRV-02,Data privacy,US - California,3,B_terse,G2,D2_jurisdiction,2
+PRV-02,Data privacy,US - California,3,B_terse,G2,D3_completeness,1
+PRV-02,Data privacy,US - California,3,B_terse,G2,D4_authority,0
+PRV-02,Data privacy,US - California,3,B_terse,G2,D5_scope,1
+PRV-02,Data privacy,US - California,3,B_terse,G2,critical_failure,1
 PRV-02,Data privacy,US - California,3,B_terse,G3,D1_accuracy,3
 PRV-02,Data privacy,US - California,3,B_terse,G3,D2_jurisdiction,3
 PRV-02,Data privacy,US - California,3,B_terse,G3,D3_completeness,2
 PRV-02,Data privacy,US - California,3,B_terse,G3,D4_authority,1
 PRV-02,Data privacy,US - California,3,B_terse,G3,D5_scope,3
 PRV-02,Data privacy,US - California,3,B_terse,G3,critical_failure,0
+PRV-02,Data privacy,US - California,3,B_terse,G4,D1_accuracy,1
+PRV-02,Data privacy,US - California,3,B_terse,G4,D2_jurisdiction,2
+PRV-02,Data privacy,US - California,3,B_terse,G4,D3_completeness,1
+PRV-02,Data privacy,US - California,3,B_terse,G4,D4_authority,1
+PRV-02,Data privacy,US - California,3,B_terse,G4,D5_scope,1
+PRV-02,Data privacy,US - California,3,B_terse,G4,critical_failure,0
 PRV-03,Health data,US - federal,2,A_standard,G1,D1_accuracy,3
 PRV-03,Health data,US - federal,2,A_standard,G1,D2_jurisdiction,2
 PRV-03,Health data,US - federal,2,A_standard,G1,D3_completeness,2
 PRV-03,Health data,US - federal,2,A_standard,G1,D4_authority,2
 PRV-03,Health data,US - federal,2,A_standard,G1,D5_scope,3
 PRV-03,Health data,US - federal,2,A_standard,G1,critical_failure,0
+PRV-03,Health data,US - federal,2,A_standard,G2,D1_accuracy,2
+PRV-03,Health data,US - federal,2,A_standard,G2,D2_jurisdiction,2
+PRV-03,Health data,US - federal,2,A_standard,G2,D3_completeness,1
+PRV-03,Health data,US - federal,2,A_standard,G2,D4_authority,0
+PRV-03,Health data,US - federal,2,A_standard,G2,D5_scope,2
+PRV-03,Health data,US - federal,2,A_standard,G2,critical_failure,1
 PRV-03,Health data,US - federal,2,A_standard,G3,D1_accuracy,3
 PRV-03,Health data,US - federal,2,A_standard,G3,D2_jurisdiction,3
 PRV-03,Health data,US - federal,2,A_standard,G3,D3_completeness,2
 PRV-03,Health data,US - federal,2,A_standard,G3,D4_authority,1
 PRV-03,Health data,US - federal,2,A_standard,G3,D5_scope,3
 PRV-03,Health data,US - federal,2,A_standard,G3,critical_failure,0
+PRV-03,Health data,US - federal,2,A_standard,G4,D1_accuracy,2
+PRV-03,Health data,US - federal,2,A_standard,G4,D2_jurisdiction,2
+PRV-03,Health data,US - federal,2,A_standard,G4,D3_completeness,1
+PRV-03,Health data,US - federal,2,A_standard,G4,D4_authority,1
+PRV-03,Health data,US - federal,2,A_standard,G4,D5_scope,2
+PRV-03,Health data,US - federal,2,A_standard,G4,critical_failure,0
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G1,D1_accuracy,2
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G1,D2_jurisdiction,2
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G1,D3_completeness,2
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G1,D4_authority,1
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G1,D5_scope,2
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G1,critical_failure,0
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G2,D1_accuracy,0
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G2,D2_jurisdiction,0
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G2,D3_completeness,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G2,D4_authority,0
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G2,D5_scope,0
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G2,critical_failure,1
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G3,D1_accuracy,1
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G3,D2_jurisdiction,1
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G3,D3_completeness,1
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G3,D4_authority,0
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G3,D5_scope,2
 PRV-04,Data privacy,EU + US - multi,3,B_terse,G3,critical_failure,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G4,D1_accuracy,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G4,D2_jurisdiction,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G4,D3_completeness,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G4,D4_authority,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G4,D5_scope,1
+PRV-04,Data privacy,EU + US - multi,3,B_terse,G4,critical_failure,1
 PRV-05,AI regulation,EU,3,A_standard,G1,D1_accuracy,1
 PRV-05,AI regulation,EU,3,A_standard,G1,D2_jurisdiction,3
 PRV-05,AI regulation,EU,3,A_standard,G1,D3_completeness,1
 PRV-05,AI regulation,EU,3,A_standard,G1,D4_authority,2
 PRV-05,AI regulation,EU,3,A_standard,G1,D5_scope,2
 PRV-05,AI regulation,EU,3,A_standard,G1,critical_failure,0
+PRV-05,AI regulation,EU,3,A_standard,G2,D1_accuracy,0
+PRV-05,AI regulation,EU,3,A_standard,G2,D2_jurisdiction,2
+PRV-05,AI regulation,EU,3,A_standard,G2,D3_completeness,1
+PRV-05,AI regulation,EU,3,A_standard,G2,D4_authority,1
+PRV-05,AI regulation,EU,3,A_standard,G2,D5_scope,1
+PRV-05,AI regulation,EU,3,A_standard,G2,critical_failure,1
 PRV-05,AI regulation,EU,3,A_standard,G3,D1_accuracy,3
 PRV-05,AI regulation,EU,3,A_standard,G3,D2_jurisdiction,3
 PRV-05,AI regulation,EU,3,A_standard,G3,D3_completeness,2
 PRV-05,AI regulation,EU,3,A_standard,G3,D4_authority,2
 PRV-05,AI regulation,EU,3,A_standard,G3,D5_scope,3
 PRV-05,AI regulation,EU,3,A_standard,G3,critical_failure,0
+PRV-05,AI regulation,EU,3,A_standard,G4,D1_accuracy,1
+PRV-05,AI regulation,EU,3,A_standard,G4,D2_jurisdiction,2
+PRV-05,AI regulation,EU,3,A_standard,G4,D3_completeness,1
+PRV-05,AI regulation,EU,3,A_standard,G4,D4_authority,1
+PRV-05,AI regulation,EU,3,A_standard,G4,D5_scope,1
+PRV-05,AI regulation,EU,3,A_standard,G4,critical_failure,1
 PRV-06,Securities / cyber,US - federal,3,B_terse,G1,D1_accuracy,0
 PRV-06,Securities / cyber,US - federal,3,B_terse,G1,D2_jurisdiction,2
 PRV-06,Securities / cyber,US - federal,3,B_terse,G1,D3_completeness,0
 PRV-06,Securities / cyber,US - federal,3,B_terse,G1,D4_authority,1
 PRV-06,Securities / cyber,US - federal,3,B_terse,G1,D5_scope,1
 PRV-06,Securities / cyber,US - federal,3,B_terse,G1,critical_failure,1
+PRV-06,Securities / cyber,US - federal,3,B_terse,G2,D1_accuracy,0
+PRV-06,Securities / cyber,US - federal,3,B_terse,G2,D2_jurisdiction,2
+PRV-06,Securities / cyber,US - federal,3,B_terse,G2,D3_completeness,0
+PRV-06,Securities / cyber,US - federal,3,B_terse,G2,D4_authority,1
+PRV-06,Securities / cyber,US - federal,3,B_terse,G2,D5_scope,0
+PRV-06,Securities / cyber,US - federal,3,B_terse,G2,critical_failure,1
 PRV-06,Securities / cyber,US - federal,3,B_terse,G3,D1_accuracy,1
 PRV-06,Securities / cyber,US - federal,3,B_terse,G3,D2_jurisdiction,3
 PRV-06,Securities / cyber,US - federal,3,B_terse,G3,D3_completeness,1
 PRV-06,Securities / cyber,US - federal,3,B_terse,G3,D4_authority,0
 PRV-06,Securities / cyber,US - federal,3,B_terse,G3,D5_scope,2
 PRV-06,Securities / cyber,US - federal,3,B_terse,G3,critical_failure,1
+PRV-06,Securities / cyber,US - federal,3,B_terse,G4,D1_accuracy,0
+PRV-06,Securities / cyber,US - federal,3,B_terse,G4,D2_jurisdiction,2
+PRV-06,Securities / cyber,US - federal,3,B_terse,G4,D3_completeness,0
+PRV-06,Securities / cyber,US - federal,3,B_terse,G4,D4_authority,1
+PRV-06,Securities / cyber,US - federal,3,B_terse,G4,D5_scope,0
+PRV-06,Securities / cyber,US - federal,3,B_terse,G4,critical_failure,1
 IPR-01,Intellectual property,US - federal,2,A_standard,G1,D1_accuracy,1
 IPR-01,Intellectual property,US - federal,2,A_standard,G1,D2_jurisdiction,2
 IPR-01,Intellectual property,US - federal,2,A_standard,G1,D3_completeness,2
 IPR-01,Intellectual property,US - federal,2,A_standard,G1,D4_authority,1
 IPR-01,Intellectual property,US - federal,2,A_standard,G1,D5_scope,3
 IPR-01,Intellectual property,US - federal,2,A_standard,G1,critical_failure,0
+IPR-01,Intellectual property,US - federal,2,A_standard,G2,D1_accuracy,1
+IPR-01,Intellectual property,US - federal,2,A_standard,G2,D2_jurisdiction,2
+IPR-01,Intellectual property,US - federal,2,A_standard,G2,D3_completeness,1
+IPR-01,Intellectual property,US - federal,2,A_standard,G2,D4_authority,1
+IPR-01,Intellectual property,US - federal,2,A_standard,G2,D5_scope,2
+IPR-01,Intellectual property,US - federal,2,A_standard,G2,critical_failure,0
 IPR-01,Intellectual property,US - federal,2,A_standard,G3,D1_accuracy,3
 IPR-01,Intellectual property,US - federal,2,A_standard,G3,D2_jurisdiction,2
 IPR-01,Intellectual property,US - federal,2,A_standard,G3,D3_completeness,2
 IPR-01,Intellectual property,US - federal,2,A_standard,G3,D4_authority,3
 IPR-01,Intellectual property,US - federal,2,A_standard,G3,D5_scope,3
 IPR-01,Intellectual property,US - federal,2,A_standard,G3,critical_failure,0
+IPR-01,Intellectual property,US - federal,2,A_standard,G4,D1_accuracy,1
+IPR-01,Intellectual property,US - federal,2,A_standard,G4,D2_jurisdiction,2
+IPR-01,Intellectual property,US - federal,2,A_standard,G4,D3_completeness,1
+IPR-01,Intellectual property,US - federal,2,A_standard,G4,D4_authority,1
+IPR-01,Intellectual property,US - federal,2,A_standard,G4,D5_scope,2
+IPR-01,Intellectual property,US - federal,2,A_standard,G4,critical_failure,0
 IPR-02,Intellectual property,US - federal,2,B_terse,G1,D1_accuracy,2
 IPR-02,Intellectual property,US - federal,2,B_terse,G1,D2_jurisdiction,2
 IPR-02,Intellectual property,US - federal,2,B_terse,G1,D3_completeness,1
 IPR-02,Intellectual property,US - federal,2,B_terse,G1,D4_authority,1
 IPR-02,Intellectual property,US - federal,2,B_terse,G1,D5_scope,2
 IPR-02,Intellectual property,US - federal,2,B_terse,G1,critical_failure,0
+IPR-02,Intellectual property,US - federal,2,B_terse,G2,D1_accuracy,1
+IPR-02,Intellectual property,US - federal,2,B_terse,G2,D2_jurisdiction,3
+IPR-02,Intellectual property,US - federal,2,B_terse,G2,D3_completeness,1
+IPR-02,Intellectual property,US - federal,2,B_terse,G2,D4_authority,0
+IPR-02,Intellectual property,US - federal,2,B_terse,G2,D5_scope,2
+IPR-02,Intellectual property,US - federal,2,B_terse,G2,critical_failure,1
 IPR-02,Intellectual property,US - federal,2,B_terse,G3,D1_accuracy,2
 IPR-02,Intellectual property,US - federal,2,B_terse,G3,D2_jurisdiction,3
 IPR-02,Intellectual property,US - federal,2,B_terse,G3,D3_completeness,2
 IPR-02,Intellectual property,US - federal,2,B_terse,G3,D4_authority,0
 IPR-02,Intellectual property,US - federal,2,B_terse,G3,D5_scope,3
 IPR-02,Intellectual property,US - federal,2,B_terse,G3,critical_failure,0
+IPR-02,Intellectual property,US - federal,2,B_terse,G4,D1_accuracy,2
+IPR-02,Intellectual property,US - federal,2,B_terse,G4,D2_jurisdiction,2
+IPR-02,Intellectual property,US - federal,2,B_terse,G4,D3_completeness,1
+IPR-02,Intellectual property,US - federal,2,B_terse,G4,D4_authority,1
+IPR-02,Intellectual property,US - federal,2,B_terse,G4,D5_scope,1
+IPR-02,Intellectual property,US - federal,2,B_terse,G4,critical_failure,1
 IPR-03,Intellectual property,US - federal,3,A_standard,G1,D1_accuracy,2
 IPR-03,Intellectual property,US - federal,3,A_standard,G1,D2_jurisdiction,2
 IPR-03,Intellectual property,US - federal,3,A_standard,G1,D3_completeness,2
 IPR-03,Intellectual property,US - federal,3,A_standard,G1,D4_authority,2
 IPR-03,Intellectual property,US - federal,3,A_standard,G1,D5_scope,3
 IPR-03,Intellectual property,US - federal,3,A_standard,G1,critical_failure,0
+IPR-03,Intellectual property,US - federal,3,A_standard,G2,D1_accuracy,2
+IPR-03,Intellectual property,US - federal,3,A_standard,G2,D2_jurisdiction,2
+IPR-03,Intellectual property,US - federal,3,A_standard,G2,D3_completeness,1
+IPR-03,Intellectual property,US - federal,3,A_standard,G2,D4_authority,1
+IPR-03,Intellectual property,US - federal,3,A_standard,G2,D5_scope,2
+IPR-03,Intellectual property,US - federal,3,A_standard,G2,critical_failure,0
 IPR-03,Intellectual property,US - federal,3,A_standard,G3,D1_accuracy,3
 IPR-03,Intellectual property,US - federal,3,A_standard,G3,D2_jurisdiction,3
 IPR-03,Intellectual property,US - federal,3,A_standard,G3,D3_completeness,3
 IPR-03,Intellectual property,US - federal,3,A_standard,G3,D4_authority,2
 IPR-03,Intellectual property,US - federal,3,A_standard,G3,D5_scope,3
 IPR-03,Intellectual property,US - federal,3,A_standard,G3,critical_failure,0
+IPR-03,Intellectual property,US - federal,3,A_standard,G4,D1_accuracy,2
+IPR-03,Intellectual property,US - federal,3,A_standard,G4,D2_jurisdiction,2
+IPR-03,Intellectual property,US - federal,3,A_standard,G4,D3_completeness,1
+IPR-03,Intellectual property,US - federal,3,A_standard,G4,D4_authority,1
+IPR-03,Intellectual property,US - federal,3,A_standard,G4,D5_scope,2
+IPR-03,Intellectual property,US - federal,3,A_standard,G4,critical_failure,0
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G1,D1_accuracy,3
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G1,D2_jurisdiction,3
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G1,D3_completeness,2
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G1,D4_authority,1
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G1,D5_scope,2
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G1,critical_failure,0
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G2,D1_accuracy,2
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G2,D2_jurisdiction,3
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G2,D3_completeness,1
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G2,D4_authority,0
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G2,D5_scope,1
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G2,critical_failure,1
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G3,D1_accuracy,3
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G3,D2_jurisdiction,3
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G3,D3_completeness,2
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G3,D4_authority,1
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G3,D5_scope,2
 IPR-04,Trade secrets,US - federal + California,2,B_terse,G3,critical_failure,0
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G4,D1_accuracy,3
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G4,D2_jurisdiction,2
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G4,D3_completeness,1
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G4,D4_authority,1
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G4,D5_scope,1
+IPR-04,Trade secrets,US - federal + California,2,B_terse,G4,critical_failure,0
 REA-01,Real estate,US - general,2,A_standard,G1,D1_accuracy,3
 REA-01,Real estate,US - general,2,A_standard,G1,D2_jurisdiction,2
 REA-01,Real estate,US - general,2,A_standard,G1,D3_completeness,2
 REA-01,Real estate,US - general,2,A_standard,G1,D4_authority,1
 REA-01,Real estate,US - general,2,A_standard,G1,D5_scope,3
 REA-01,Real estate,US - general,2,A_standard,G1,critical_failure,0
+REA-01,Real estate,US - general,2,A_standard,G2,D1_accuracy,2
+REA-01,Real estate,US - general,2,A_standard,G2,D2_jurisdiction,1
+REA-01,Real estate,US - general,2,A_standard,G2,D3_completeness,1
+REA-01,Real estate,US - general,2,A_standard,G2,D4_authority,0
+REA-01,Real estate,US - general,2,A_standard,G2,D5_scope,1
+REA-01,Real estate,US - general,2,A_standard,G2,critical_failure,1
 REA-01,Real estate,US - general,2,A_standard,G3,D1_accuracy,3
 REA-01,Real estate,US - general,2,A_standard,G3,D2_jurisdiction,3
 REA-01,Real estate,US - general,2,A_standard,G3,D3_completeness,2
 REA-01,Real estate,US - general,2,A_standard,G3,D4_authority,2
 REA-01,Real estate,US - general,2,A_standard,G3,D5_scope,3
 REA-01,Real estate,US - general,2,A_standard,G3,critical_failure,0
+REA-01,Real estate,US - general,2,A_standard,G4,D1_accuracy,2
+REA-01,Real estate,US - general,2,A_standard,G4,D2_jurisdiction,1
+REA-01,Real estate,US - general,2,A_standard,G4,D3_completeness,1
+REA-01,Real estate,US - general,2,A_standard,G4,D4_authority,1
+REA-01,Real estate,US - general,2,A_standard,G4,D5_scope,2
+REA-01,Real estate,US - general,2,A_standard,G4,critical_failure,0
 REA-02,Real estate / finance,US - general,2,B_terse,G1,D1_accuracy,3
 REA-02,Real estate / finance,US - general,2,B_terse,G1,D2_jurisdiction,2
 REA-02,Real estate / finance,US - general,2,B_terse,G1,D3_completeness,2
 REA-02,Real estate / finance,US - general,2,B_terse,G1,D4_authority,3
 REA-02,Real estate / finance,US - general,2,B_terse,G1,D5_scope,2
 REA-02,Real estate / finance,US - general,2,B_terse,G1,critical_failure,0
+REA-02,Real estate / finance,US - general,2,B_terse,G2,D1_accuracy,2
+REA-02,Real estate / finance,US - general,2,B_terse,G2,D2_jurisdiction,2
+REA-02,Real estate / finance,US - general,2,B_terse,G2,D3_completeness,1
+REA-02,Real estate / finance,US - general,2,B_terse,G2,D4_authority,2
+REA-02,Real estate / finance,US - general,2,B_terse,G2,D5_scope,1
+REA-02,Real estate / finance,US - general,2,B_terse,G2,critical_failure,0
 REA-02,Real estate / finance,US - general,2,B_terse,G3,D1_accuracy,3
 REA-02,Real estate / finance,US - general,2,B_terse,G3,D2_jurisdiction,3
 REA-02,Real estate / finance,US - general,2,B_terse,G3,D3_completeness,2
 REA-02,Real estate / finance,US - general,2,B_terse,G3,D4_authority,1
 REA-02,Real estate / finance,US - general,2,B_terse,G3,D5_scope,3
 REA-02,Real estate / finance,US - general,2,B_terse,G3,critical_failure,0
+REA-02,Real estate / finance,US - general,2,B_terse,G4,D1_accuracy,3
+REA-02,Real estate / finance,US - general,2,B_terse,G4,D2_jurisdiction,2
+REA-02,Real estate / finance,US - general,2,B_terse,G4,D3_completeness,1
+REA-02,Real estate / finance,US - general,2,B_terse,G4,D4_authority,2
+REA-02,Real estate / finance,US - general,2,B_terse,G4,D5_scope,2
+REA-02,Real estate / finance,US - general,2,B_terse,G4,critical_failure,0
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G1,D1_accuracy,2
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G1,D2_jurisdiction,2
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G1,D3_completeness,1
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G1,D4_authority,1
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G1,D5_scope,2
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G1,critical_failure,0
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G2,D1_accuracy,2
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G2,D2_jurisdiction,1
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G2,D3_completeness,1
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G2,D4_authority,0
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G2,D5_scope,2
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G2,critical_failure,1
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G3,D1_accuracy,3
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G3,D2_jurisdiction,3
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G3,D3_completeness,2
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G3,D4_authority,1
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G3,D5_scope,3
 ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G3,critical_failure,0
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G4,D1_accuracy,2
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G4,D2_jurisdiction,1
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G4,D3_completeness,1
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G4,D4_authority,1
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G4,D5_scope,2
+ETH-01,Legal ethics / UPL,US - state bar rules,3,A_standard,G4,critical_failure,0
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G1,D1_accuracy,2
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G1,D2_jurisdiction,2
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G1,D3_completeness,1
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G1,D4_authority,2
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G1,D5_scope,2
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G1,critical_failure,0
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G2,D1_accuracy,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G2,D2_jurisdiction,2
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G2,D3_completeness,0
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G2,D4_authority,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G2,D5_scope,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G2,critical_failure,0
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G3,D1_accuracy,2
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G3,D2_jurisdiction,3
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G3,D3_completeness,1
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G3,D4_authority,1
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G3,D5_scope,2
 ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G3,critical_failure,0
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G4,D1_accuracy,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G4,D2_jurisdiction,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G4,D3_completeness,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G4,D4_authority,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G4,D5_scope,1
+ETH-02,Legal ethics / confidentiality,US - state bar rules,3,B_terse,G4,critical_failure,1

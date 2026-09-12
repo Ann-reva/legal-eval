@@ -57,97 +57,126 @@ deadlines. Explicit adjudication rules: score the answer as written, tie-break
 downward, rationale mandatory, length is not quality. Full text in
 `docs/rubric.md`.
 
-**Judges.** Two model judges scored all 40 items, each in its own presentation
-order, seeing only the rubric, the item, the gold reference and the answer:
-`G1` (Opus-class) and `G3` (Haiku-class, the low-cost arm). Neither saw the
-other's output or the generation condition. A human rating pass is supported by
-the harness and has not been run — see L4.
+**Judges.** Four rating passes over all 40 items. Three are independent and carry
+the headline figures:
+
+| Rater | Model | Execution |
+|---|---|---|
+| `G2` | Sonnet-class | API, one independent call per item, own presentation order |
+| `G4` | Opus-class | API, one independent call per item, own presentation order |
+| `G3` | Haiku-class | cold subagent, fresh context, rubric and items only |
+| `G1` | Opus-class | pilot pass in the authoring context — **excluded from the headline** |
+
+Each judge saw only the rubric, the item, the gold reference and the answer:
+never the generation condition, the authored difficulty, or another judge's
+output. `G1` was the first pass and ran in the same context that wrote the items,
+so it knew what each trap was designed to catch. It is retained in the repository
+and in the pairwise tables for comparison, and excluded from every multi-rater
+statistic. A human rating pass is supported by the harness and has not been run.
 
 **Statistics.** Percent exact and within-one agreement; Cohen's kappa, unweighted
 and quadratically weighted (the scale is ordinal, so a 3-vs-0 split should not
 count the same as a 3-vs-2); Gwet's AC1/AC2, because kappa's chance correction
 collapses when the marginals are skewed and this set skews hard on two
 dimensions; percentile bootstrap CIs over items, 5,000 resamples. Fleiss' kappa
-and Krippendorff's alpha (ordinal) compute automatically once a third rater
-exists. Every estimator is implemented from scratch in `src/agreement.py` and
+and Krippendorff's alpha (ordinal) over the independent panel. Every estimator is implemented from scratch in `src/agreement.py` and
 validated in `tests/` against published worked examples and against the
 `scikit-learn` and `krippendorff` reference implementations.
 
 ## Findings
 
-**1. The two judges do not agree, on any dimension.** Weighted kappa ranged from
-0.09 to 0.28 — "slight" to "fair". Exact agreement was 38–50%. The bootstrap CIs
-are wide (typically ±0.2) at n = 40, so the precise values should not be
-over-read; the conclusion that none of them is near an acceptable threshold is
-robust to that width.
+**1. The choice of judge dominates everything else.** Across the four passes, the
+number of answers flagged as a critical failure — the deployment gate — ran from
+**3 to 30 out of 40**. Mean legal-accuracy score ran from **1.07 to 2.50** on a
+0–3 scale. Same rubric, same answers, same instructions. Whatever such a
+programme reports about the system under test is, on this evidence, mostly a
+report about which judge was hired.
 
-**2. Agreement was worst on the dimension that matters most.** The
-critical-failure flag — the deployment gate — reached Cohen's kappa **0.03**,
-indistinguishable from chance. `G1` flagged 11 items, `G3` flagged 3, and they
-overlapped on **1**. A team that swapped judges would see its blocker count move
-by a factor of three.
+**2. Three independent judges produce no usable multi-rater agreement at all.**
+Fleiss' kappa over `G2`, `G3` and `G4` was **0.03 or below on every dimension**,
+negative on three of them. Krippendorff's alpha (ordinal) peaked at **0.22** on
+legal accuracy and was negative on jurisdictional grounding and scope discipline.
+On the critical-failure flag, all three agreed — either that an item is a blocker
+or that it is not — on **10 of 40 items**. For fifteen items exactly one of the
+three raised the flag.
 
-**3. The failure was in the instrument, not the rater's legal reading.** This is
-the result that changes what to do about it. On most items where only `G1`
-flagged, `G3`'s own free-text rationale had already identified the defect — "Misstates
-vehicle as Rule 12(e) when correct answer is Rule 12(c)", "Fails to address DGCL
-251(h)… major omission", "Violates rubric guidance by asserting specific 2024
-threshold as settled law" — and then did not set the flag. The rater diagnosed
-correctly and failed to map the diagnosis onto a holistic yes/no. That is fixable
-by replacing the holistic flag with four independent binary checks, which is
-proposal P1 in `results/rubric_v1.1_proposal.md`. Without mandatory rationales
-this would have been invisible: the kappa alone says "raters disagree" and
-implies the raters are the problem.
+**3. But capability tier, not the rubric, is what breaks it.** Restricting to the
+two strong independent judges, `G2` and `G4`, agreement is respectable:
+weighted kappa **0.78** on issue completeness, **0.72** on legal accuracy,
+**0.66** on scope discipline, **0.51** on jurisdictional grounding. The
+three-rater figures collapse because the low-cost arm is a different instrument,
+not because the rubric is unusable between comparable raters. That distinction is
+invisible in a single Fleiss number, and it changes the recommendation
+completely: the fix is judge selection and routing, not another rubric rewrite.
 
-**4. Kappa alone would have produced the wrong diagnosis on D2.** Jurisdictional
-grounding showed **100% agreement within one point** and weighted kappa of
-**0.09** — while Gwet's AC2 was **0.89**. The cause is traceable to a single
-line in the rubric (adjudication rule 3, "if a dimension is barely engaged, score
-it 2") that one judge applied and the other did not, pushing almost all the mass
-into two adjacent cells. Reporting kappa alone would have sent effort at a
-rater-calibration problem that does not exist.
+**4. Agreement is worst on the two things a legal product most needs.** Even
+between the two strong judges, the critical-failure flag reached kappa **0.24**
+and authority hygiene — the dimension that catches fabricated citations —
+reached weighted kappa **0.31**, the lowest of the five. `G2` flagged 30 items,
+`G4` 18, overlapping on 16: the same evidence, very different thresholds for
+"this blocks release."
 
-**5. The low-cost judge is usable for ranking and not for gating.** It was
-0.82 points more lenient on legal accuracy (2.50 vs 1.68 on a 0–3 scale) and
-caught 1 of 11 critical failures. But it ordered the two prompt conditions
-correctly and more sharply than the expensive judge did — `B_terse` scored
-−1.00 on authority hygiene and −0.45 on completeness. A cheap judge whose bias is
-roughly constant still detects *relative* movement; it cannot be trusted with an
-absolute safety threshold. Proposal P6 turns that into a two-tier routing rule.
+**5. The failure mode is instrument design, not legal reading.** On most items
+where a stricter judge flagged and a lenient one did not, the lenient judge's own
+free-text rationale had already named the defect — "Misstates vehicle as Rule
+12(e) when correct answer is Rule 12(c)", "Fails to address DGCL 251(h)… major
+omission", "Violates rubric guidance by asserting specific 2024 threshold as
+settled law" — and then did not set the flag. The rater diagnosed correctly and
+failed to map the diagnosis onto a holistic yes/no. Replacing the holistic flag
+with four independent binary checks is proposal P1 in
+`results/rubric_v1.1_proposal.md`. Without mandatory rationales this would have
+been invisible: kappa alone says "the raters disagree" and implies the raters are
+the problem.
 
-**6. The rubric detects the manipulation, with one honest anomaly.** Both judges
-scored `B_terse` lower on completeness, authority hygiene and scope discipline —
-the rubric measures something real. But `G1` scored `B_terse` *higher* on legal
-accuracy (+0.25). The likely explanation is mechanical rather than flattering to
-the terse condition: a 32-word answer makes fewer legal propositions than a
-117-word one, so it has less surface on which to be wrong. That is a defect in
-how D1 is defined, not evidence that terse answers are more accurate, and it is
-the second motivation for splitting D1 into conclusion and reasoning (P2).
+**6. Kappa alone would have produced the wrong diagnosis on jurisdiction.** `G1`
+vs `G3` showed **100% agreement within one point** on jurisdictional grounding
+with weighted kappa of **0.09** and Gwet's AC2 of **0.89**. The cause is
+traceable to a single line of the rubric — adjudication rule 3, "if a dimension is
+barely engaged, score it 2" — which one judge applied and the other did not,
+pushing almost all the mass into two adjacent cells. Reporting kappa alone would
+have sent effort at a rater-calibration problem that does not exist. Gwet's
+coefficient is in the report for exactly this reason.
+
+**7. The rubric detects the manipulation, with one honest anomaly.** All four
+judges scored `B_terse` lower on issue completeness and scope discipline, and
+three of four lower on authority hygiene (`G3` by a full point). So the rubric
+measures something real. But two judges scored `B_terse` *higher* on legal
+accuracy (+0.25 each). The likely explanation is mechanical rather than
+flattering to the terse condition: a 32-word answer makes fewer legal
+propositions than a 117-word one, so it has less surface on which to be wrong.
+That is a defect in how D1 is defined, not evidence that terse answers are more
+accurate, and it is the second motivation for splitting D1 into conclusion and
+reasoning (P2).
 
 ## Limitations
 
 These are the reasons not to over-read the numbers above. They are listed because
 an evaluation write-up that does not list them is not finished.
 
-- **L1 — `G1` is not independent of item authoring.** It ran in the same context
-  that wrote the questions and gold references, so it knew what each trap was
-  designed to catch. This inflates its apparent severity and is the single
-  largest threat to the reported figures. `src/run_graders.py` fixes it: one
-  independent API call per item, temperature 0, fresh context. Re-running with
-  two API judges is the first thing to do with this repository.
+- **L1 — resolved, and kept on the record.** The first rating pass (`G1`) ran in
+  the context that authored the items, so it was not independent. Rather than
+  quietly dropping it, it is excluded from every headline statistic, retained for
+  comparison, and marked as non-independent in the rater manifest. The headline
+  judges are independent API passes, one call per item.
 - **L2 — `G3` shares a model family with the system under test**, so its leniency
   is confounded with self-preference. The size of that effect is not separable
   from the capability difference with the data collected here.
-- **L3 — n = 40.** Bootstrap CIs on weighted kappa run roughly ±0.2. The
+- **L3 — sampling could not be pinned.** The models used for `G2` and `G4` reject
+  the `temperature` parameter, so the runs are at each model's default sampling
+  and are not bit-reproducible. Each item is still a separate request, so no
+  within-run calibration is possible; but re-running will not reproduce these
+  exact ratings. The harness records which sampling shape the model accepted.
+- **L4 — n = 40.** Bootstrap CIs on weighted kappa run roughly ±0.2. The
   direction of every finding is stable across resamples; the point estimates are
   not precise.
-- **L4 — no human rater.** Without one there is no anchor for which judge is
-  closer to right, only a measure of whether they agree. The harness supports a
-  human pass (`src/human_sheet.py`), including a partial one.
-- **L5 — single vendor.** Both judges are Claude models. Cross-vendor agreement
-  is the more demanding and more informative test, and `run_graders.py` supports
-  OpenAI and Google providers for exactly that.
-- **L6 — the gold references were authored for this study and have not been
+- **L5 — no human rater.** Without one there is no anchor for which judge is
+  closer to right, only a measure of whether they agree. Given how far apart the
+  judges are, this is now the most valuable missing piece: the harness supports a
+  human pass (`src/human_sheet.py`), including a partial one over 15 items.
+- **L6 — single vendor.** All four judges are Claude models. Cross-vendor
+  agreement is the more demanding and more informative test, and
+  `run_graders.py` supports OpenAI and Google providers for exactly that.
+- **L7 — the gold references were authored for this study and have not been
   reviewed by a licensed attorney.** They are researched against named primary
   authority and are, to the author's knowledge, accurate as of September 2026,
   but in a production programme they would be adjudicated by subject-matter

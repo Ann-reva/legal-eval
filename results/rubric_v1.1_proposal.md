@@ -11,9 +11,12 @@ with the fix without having to re-derive the problem.
 
 ## P1 — Replace the critical-failure judgment call with four binary checks
 
-**Evidence.** The flag had the worst agreement of anything measured: Cohen's
-kappa 0.03, effectively chance. `G1` raised it on 11 items, `G3` on 3, and they
-overlapped on 1.
+**Evidence.** The flag had the worst agreement of anything measured. Across the
+three independent judges, Fleiss' kappa on the flag was **-0.02** and all three
+agreed on only **10 of 40 items**; for 15 items exactly one of the three raised
+it. The per-judge counts were 3, 18 and 30 out of 40. Even between the two strong
+independent judges, Cohen's kappa was **0.24** (both flagged 16, `G2` alone 14,
+`G4` alone 2).
 
 The important part is *why*. On most of the items where only `G1` flagged, `G3`'s
 own free-text rationale had already identified the defect:
@@ -50,7 +53,9 @@ Each is a question about the text, not about severity. The rationale must quote
 the triggering words for any CF answered yes.
 
 **Expected effect.** CF1 and CF3 should approach ceiling agreement. CF2 and CF4
-will remain the hard cases and are where calibration effort should go.
+will remain the hard cases and are where calibration effort should go. Whether
+this works is a testable prediction, and re-running the harness with a v1.1
+rubric against the same 40 answers is the experiment that settles it.
 
 ---
 
@@ -87,8 +92,9 @@ is invisible in any metric that only checks the bottom line.
 ## P3 — Give D2 an explicit "not engaged" code
 
 **Evidence.** D2 produced the sharpest instance of the kappa paradox in the run:
-**100% of items agreed within one point**, yet weighted kappa was 0.09 while
-Gwet's AC2 was 0.89. The cause is traceable to adjudication rule 3 of v1.0 ("if a
+between `G1` and `G3`, **100% of items agreed within one point**, yet weighted
+kappa was 0.09 while Gwet's AC2 was 0.89. The same pattern recurs on the `G2` /
+`G4` pair, where AC2 reaches 0.96 against a weighted kappa of 0.51. The cause is traceable to adjudication rule 3 of v1.0 ("if a
 dimension is barely engaged, score it 2"). `G1` applied it — 24 of 40 items
 scored 2. `G3` did not — 38 of 40 items scored 3. Almost all the mass sits in two
 adjacent cells, which is precisely the condition under which kappa's chance
@@ -109,9 +115,12 @@ failing when the marginals are the problem.
 
 ## P4 — Make D4 conditional on whether a citation is expected
 
-**Evidence.** D4 is the one dimension where the two raters had almost identical
-means (1.35 vs 1.30) and still disagreed item by item (weighted kappa 0.24). They
-share the definition and apply it to different populations of items.
+**Evidence.** D4 is the **worst** dimension between the two strong independent
+judges — weighted kappa **0.31**, below every other dimension — and the one where
+raters with near-identical mean scores still disagree item by item (`G1` 1.35 vs
+`G3` 1.30, weighted kappa 0.24). They share the definition and apply it to
+different populations of items. For a legal product this is the dimension that
+catches fabricated citations, so it is the least acceptable place to be weakest.
 
 The clearest case is **REA-02** (estoppel certificate vs SNDA), scored D4 = 3 by
 `G1` and D4 = 1 by `G3`. The gold reference for that item lists its authority as
@@ -144,9 +153,11 @@ further than three times as many contract items.
 
 ## P6 — Do not use a low-cost judge as a safety gate
 
-**Evidence.** The low-cost arm agreed with the higher-capability judge on 1 of
-the 11 items the latter flagged as a critical failure. Its mean D1 score was 0.82
-points higher on a 0–3 scale.
+**Evidence.** The low-cost arm flagged 3 items out of 40 where the two strong
+independent judges flagged 18 and 30. Its mean legal-accuracy score was 2.50
+against 1.43 and 1.07 — more than a full point of the 0–3 scale. Its exact
+agreement with `G2` on legal accuracy was **5%**. Dropping it from the panel is
+what moves weighted kappa on issue completeness from 0.20 to 0.78.
 
 **Proposed change.** Two-tier routing rather than a single judge choice:
 
