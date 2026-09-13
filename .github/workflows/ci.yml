@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11.15"
+      - name: Install the locked environment
+        run: pip install -r requirements-lock.txt
+
+      - name: Validate the agreement estimators
+        run: python tests/test_agreement.py
+
+      # The point of this job: the committed numbers must fall out of the
+      # committed ratings. If analyze.py produces anything different from what is
+      # in results/, the report and the data have drifted apart and CI fails.
+      - name: Regenerate the report from the committed ratings
+        run: python src/analyze.py
+
+      - name: Fail if the committed results are not reproducible
+        run: |
+          git diff --exit-code -- \
+            results/agreement_report.md \
+            results/disagreements.md \
+            results/scores_long.csv
+
+      # Figures are rendered, so byte-equality across matplotlib builds is not a
+      # meaningful check; this only asserts they still build.
+      - name: Build the figures
+        run: python src/figures.py
