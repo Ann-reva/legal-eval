@@ -52,8 +52,8 @@ Recorded here rather than smoothed over: the split does not affect the ratings,
 but a reader reconstructing the run needs both seeds. The practical lesson is that
 `--workers 4` is too aggressive for a fresh API account.
 
-**Cost.** Roughly 132k input and 12k output tokens per 40-item pass; eight passes
-in total.
+**Cost.** Roughly 132k input and 12k output tokens per 40-item pass; nine passes
+in total, across two vendors.
 
 ## Rebuilding
 

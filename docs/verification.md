@@ -73,6 +73,12 @@ knowing which of your facts have expiry dates.
   (0.86-1.00 weighted kappa within a judge) rather than assuming it away, but
   sensitivity to the *wording* of the rubric is untested. See **L3** and
   `docs/run_log.md`.
-- **No cross-vendor judge has been run.** `src/run_graders.py` supports OpenAI and
-  Google providers, but only Anthropic models were used, so cross-vendor
-  capability is a promise in this repository rather than a result. See **L14**.
+- **The cross-vendor arm is one model from one other vendor.** `G5` (an OpenAI
+  model) has been run over all 40 items and is in the independent panel, so the
+  cross-vendor capability is a result rather than a promise. But with one model per
+  vendor the design **cannot separate a vendor effect from a model effect**, and no
+  third vendor has been run. See **L14**.
+- **The ranking within the strong judges is not established.** `G5` and `G4` differ
+  by one item out of the fifteen the human scored; the paired bootstrap on that
+  difference spans zero. Section 3a of the report states this next to the point
+  estimates. See **L8**.

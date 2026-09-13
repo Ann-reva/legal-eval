@@ -160,8 +160,10 @@ were not:
 - It agreed with the human at the top of the panel (flag kappa **0.74**, 95% CI
   [0.37, 1.00]), alongside the Opus-class judge (**0.62**, [0.24, 1.00]).
 - It agreed with the Opus-class judge (flag kappa **0.55**) more than the two
-  Claude judges of different tiers agreed with each other (**0.24**). Capability
-  tier separates judges more than vendor does.
+  Claude judges of different tiers agreed with each other (**0.24**). That is
+  consistent with capability mattering more than vendor - but with one model per
+  vendor this design **cannot separate a vendor effect from a model effect**, and
+  the sentence should not be read as establishing one (L14).
 - It was the strictest judge on legal accuracy (mean **0.97**, against 1.43 for
   Opus-class and 2.50 for Haiku-class), and it is the only judge with no family
   relationship to the system under test - so its strictness has no

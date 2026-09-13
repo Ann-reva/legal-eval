@@ -71,8 +71,10 @@ are how it got there.
    different vendor landed at the top of the panel alongside the Opus-class judge,
    agreed with that judge (flag kappa 0.55) more than the two Claude tiers agreed
    with each other (0.24), and was the strictest judge of all — while being the
-   only judge with no family relationship to the system under test. **Capability
-   tier separates judges more than vendor does.** It is *not* demonstrably better
+   only judge with no family relationship to the system under test. **This is
+   consistent with capability mattering more than vendor, but the design cannot
+   separate vendor from model:** there is one model per vendor. It is *not*
+   demonstrably better
    than the Opus-class judge: that difference is +0.12 with a 95% CI of
    [−0.27, 0.52] and comes down to a single item out of fifteen.
 5. **A substantial share of the agreement was the answer key, not the law.**
@@ -190,14 +192,17 @@ python src/figures.py
 (`G5`) is in the panel; the design still cannot separate vendor from model.
 
 ```bash
-pip install openai
+pip install openai               # or google-generativeai
 export OPENAI_API_KEY=...        # never commit it; never paste it anywhere
 
+# Use a rater id that is not already taken: G5 is the OpenAI pass and would be
+# overwritten. `ls data/grades/` shows what exists.
+
 # preflight: one item, nothing written — checks the model name and request shape
-python src/run_graders.py --provider openai --model <model> --out G5 --limit 1 --dry-run
+python src/run_graders.py --provider <vendor> --model <model> --out G6 --limit 1 --dry-run
 
 # the full pass
-python src/run_graders.py --provider openai --model <model> --out G5
+python src/run_graders.py --provider <vendor> --model <model> --out G6
 python src/analyze.py && python src/figures.py
 ```
 
