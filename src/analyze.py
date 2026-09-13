@@ -141,6 +141,58 @@ def main():
           f"only `{b}` **{sum(y)-bothf}**, neither **{len(pids)-sum(x)-sum(y)+bothf}**.\n")
     W("")
 
+    # ---------------- agreement with the human anchor ----------------
+    human = [r for r in raters if meta[r].get("model") == "human"]
+    if human and len(raters) > 2:
+        h = human[0]
+        others = [r for r in raters if r != h and not meta[r].get("variant_of")]
+        W("## 3a. Agreement with the human rater, with uncertainty\n")
+        W("The human pass is the study's only anchor outside the models, and it is "
+          "small. Point estimates alone would let a reader rank the judges more "
+          "confidently than the data allows, so the interval and the raw count of "
+          "disagreeing items are reported next to every coefficient.\n")
+        W(f"| Judge | Flag kappa vs `{h}` | 95% CI | Items scored differently | n |")
+        W("|---|---|---|---|---|")
+        rows = []
+        for r in others:
+            pids = both(r, h)
+            x = [int(grades[r][i]["critical_failure"]) for i in pids]
+            y = [int(grades[h][i]["critical_failure"]) for i in pids]
+            k = cohen_kappa(x, y, [0, 1])
+            ci = bootstrap_ci(lambda idx: cohen_kappa([x[j] for j in idx],
+                                                      [y[j] for j in idx], [0, 1]),
+                              len(pids), n_boot=10000)
+            diff = sum(1 for u, v in zip(x, y) if u != v)
+            rows.append((r, k, ci, diff, len(pids)))
+        for r, k, ci, diff, n in sorted(rows, key=lambda t: -t[1]):
+            W(f"| `{r}` | {fmt(k,2)} | [{fmt(ci[0],2)}, {fmt(ci[1],2)}] | {diff} of {n} | {n} |")
+        W("")
+        top = sorted(rows, key=lambda t: -t[1])[:2]
+        if len(top) == 2:
+            (ra, ka, _, da, _), (rb, kb, _, db, _) = top
+            pids = [i for i in both(ra, h) if i in grades[rb]]
+            hv = [int(grades[h][i]["critical_failure"]) for i in pids]
+            av = [int(grades[ra][i]["critical_failure"]) for i in pids]
+            bv = [int(grades[rb][i]["critical_failure"]) for i in pids]
+            rng = np.random.default_rng(11)
+            ds = []
+            for _ in range(10000):
+                idx = rng.integers(0, len(pids), len(pids))
+                d = (cohen_kappa([av[j] for j in idx], [hv[j] for j in idx], [0, 1])
+                     - cohen_kappa([bv[j] for j in idx], [hv[j] for j in idx], [0, 1]))
+                if d == d:
+                    ds.append(d)
+            lo, hi = np.percentile(ds, [2.5, 97.5])
+            pgt = float(np.mean(np.array(ds) > 0))
+            W(f"**Is `{ra}` actually better than `{rb}`?** Paired bootstrap on the "
+              f"difference: **{ka-kb:+.2f}**, 95% CI **[{lo:.2f}, {hi:.2f}]**, "
+              f"P(`{ra}` > `{rb}`) = **{pgt:.2f}**. In raw terms `{ra}` differs from "
+              f"the human on **{da}** items and `{rb}` on **{db}**. The gap between "
+              "the two strongest judges is one or two items and is **not "
+              "distinguishable from noise at this sample size**. What the data does "
+              "separate is strong judges from the low-cost one, and that gap is "
+              "large.\n")
+
     # ---------------- multi-rater ----------------
     if len(headline) >= 3:
         W("## 4. Multi-rater agreement\n")

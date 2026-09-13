@@ -79,21 +79,30 @@ def fig_human_agreement(grades, judges, out):
         ids = sorted(set(grades[r]) & set(grades["GH"]))
         if len(ids) < 5:
             continue
-        k = cohen_kappa([int(grades[r][i]["critical_failure"]) for i in ids],
-                        [int(grades["GH"][i]["critical_failure"]) for i in ids], [0, 1])
-        rows.append((r, k, len(ids)))
+        x = [int(grades[r][i]["critical_failure"]) for i in ids]
+        y = [int(grades["GH"][i]["critical_failure"]) for i in ids]
+        k = cohen_kappa(x, y, [0, 1])
+        lo, hi = bootstrap_ci(lambda idx: cohen_kappa([x[j] for j in idx],
+                                                      [y[j] for j in idx], [0, 1]),
+                              len(ids), n_boot=10000)
+        rows.append((r, k, len(ids), lo, hi))
     rows.sort(key=lambda t: t[1])
-    fig, ax = plt.subplots(figsize=(8.4, 3.4))
+    fig, ax = plt.subplots(figsize=(8.6, 3.8))
     ypos = np.arange(len(rows))
-    bars = ax.barh(ypos, [k for _, k, _ in rows], height=.5, color=SERIES[0], zorder=3)
-    for rect, (_, k, _) in zip(bars, rows):
-        ax.text(max(k, 0) + .012, rect.get_y() + rect.get_height() / 2, f"{k:.2f}",
-                va="center", ha="left", fontsize=9.5, color=INK_2)
+    ax.barh(ypos, [k for _, k, _, _, _ in rows], height=.5, color=SERIES[0], zorder=3)
+    for yy, (_, k, _, lo, hi) in zip(ypos, rows):
+        ax.plot([lo, hi], [yy, yy], color=INK_2, lw=1.4, alpha=.75, zorder=5,
+                solid_capstyle="butt")
+        for e in (lo, hi):
+            ax.plot([e, e], [yy - .12, yy + .12], color=INK_2, lw=1.4, zorder=5)
+        ax.text(max(hi, k) + .015, yy, f"{k:.2f}  [{lo:.2f}, {hi:.2f}]",
+                va="center", ha="left", fontsize=9, color=INK_2)
     ax.set_yticks(ypos)
-    ax.set_yticklabels([f"{r} — {m}" for (r, _, _), m in
-                        zip(rows, [MODEL_SHORT.get(r, r) for r, _, _ in rows])])
-    ax.set_xlim(0, 0.9); ax.set_xlabel("Cohen's kappa with the human rater (n = 15)")
-    ax.set_title("Agreement with the human rater on the critical-failure flag",
+    ax.set_yticklabels([f"{r} — {MODEL_SHORT.get(r, r)}" for r, _, _, _, _ in rows])
+    ax.set_xlim(-0.3, 1.55); ax.set_xticks([-0.25, 0, 0.25, .5, .75, 1])
+    ax.set_xlabel("Cohen's kappa with the human rater, 95% bootstrap CI (n = 15)")
+    ax.axvline(0, color=MUTED, lw=1, zorder=1)
+    ax.set_title("Agreement with the human rater — and how little 15 items settle",
                  loc="left", fontsize=12, color=INK, pad=12)
     _clean(ax)
     fig.tight_layout(); fig.savefig(out, dpi=200); plt.close(fig)
@@ -153,7 +162,7 @@ def fig_agreement(grades, pair, ids, meta, out):
     ax.set_yticks(ypos); ax.set_yticklabels(names)
     ax.set_ylim(len(names) - 0.35, -0.75)
     ax.set_xlim(-0.15, 1.0); ax.set_xlabel("Agreement coefficient")
-    ax.set_title(f"Best case: the two strongest independent judges ({a} vs {b})",
+    ax.set_title(f"Best case: the two strongest judges, one per vendor ({a} vs {b})",
                  loc="left", fontsize=12, color=INK, pad=34)
     ax.legend(frameon=False, loc="upper left", bbox_to_anchor=(0, 1.11),
               ncol=2, fontsize=9, handletextpad=.4, columnspacing=1.6)

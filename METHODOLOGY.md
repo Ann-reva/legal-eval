@@ -1,8 +1,8 @@
-# Measuring whether two AI judges agree about legal answers
+# Do two AI judges scoring legal answers measure the same thing?
 
 A small, complete evaluation study: 40 legal questions, a written rubric, a system
-under test, two independent model judges, and the inter-rater statistics that say
-whether the judges are measuring the same thing.
+under test, four model judges across two vendors, a human rater, and the
+inter-rater statistics that say whether the judges are measuring the same thing.
 
 ---
 
@@ -133,32 +133,52 @@ to the Sonnet-class judge (1.07). Item by item it is not close:
 
 | Against the human rater (n=15) | GPT-class (other vendor) | Opus-class | Sonnet-class | Haiku-class |
 |---|---|---|---|---|
-| Critical-failure flag (kappa) | **0.74** | 0.62 | 0.24 | **0.00** |
+| Critical-failure flag (kappa) | **0.74** [0.37, 1.00] | **0.62** [0.24, 1.00] | 0.24 [-0.24, 0.71] | **0.00** |
+| Items scored differently from her | 2 of 15 | 3 of 15 | 5 of 15 | 9 of 15 |
 | Legal accuracy (kappa_w) | 0.75 | 0.58 | 0.47 | 0.10 |
 | Jurisdictional grounding (kappa_w) | 0.19 | 0.62 | 0.57 | 0.00 |
 
+The two leading intervals overlap almost entirely; see finding 4 for why they
+should not be ranked against each other.
+
 The low-cost judge flagged **none** of the nine items she flagged as critical
 failures. The two strongest judges produced **no false positives** against her:
-every item either of them flagged, she flagged too; they only missed items. For a
+every item either of them flagged, she flagged too; they only missed items. That
+is six or seven flags each with none misplaced - suggestive, and nowhere near
+enough flags to establish a false-positive rate. For a
 release gate that asymmetry is the property worth knowing, and it is invisible in
 any aggregate score. On 15 items against a non-expert rater this is exploratory
 evidence, not an established effect - see L4 through L8. The jurisdictional-
 grounding row shows the fragility directly: the judge that tracks her best on the
 flag tracks her worst on that dimension.
 
-**4. The pattern is not an artefact of one vendor.** Adding a GPT-class judge from
-a different vendor was the test of whether findings 2 and 3 were a property of the
-Claude family. They were not, and the cross-vendor arm strengthened them:
+**4. The pattern is not an artefact of one vendor - but the ranking within the
+strong judges is not real.** Adding a GPT-class judge from a different vendor was
+the test of whether findings 2 and 3 were a property of the Claude family. They
+were not:
 
-- It agreed with the human **better than any Claude judge** (flag kappa 0.74).
+- It agreed with the human at the top of the panel (flag kappa **0.74**, 95% CI
+  [0.37, 1.00]), alongside the Opus-class judge (**0.62**, [0.24, 1.00]).
 - It agreed with the Opus-class judge (flag kappa **0.55**) more than the two
   Claude judges of different tiers agreed with each other (**0.24**). Capability
   tier separates judges more than vendor does.
-- It was the **strictest** judge on legal accuracy (mean 0.97, against 1.43 for
-  Opus-class and 2.50 for Haiku-class), and it has no family relationship to the
-  system under test - so its strictness cannot be explained by self-preference.
-- Against the low-cost judge it agrees with essentially nothing: weighted kappa
-  0.04 to 0.16 across every dimension.
+- It was the strictest judge on legal accuracy (mean **0.97**, against 1.43 for
+  Opus-class and 2.50 for Haiku-class), and it is the only judge with no family
+  relationship to the system under test - so its strictness has no
+  self-preference explanation, though a single model cannot rule out that this
+  vendor is simply harsher.
+- Against the low-cost judge it agrees with almost nothing: weighted kappa 0.04 to
+  0.16 on every dimension.
+
+**What this does not show.** The cross-vendor judge is *not* demonstrably better
+than the Opus-class judge. The difference is **+0.12 with a 95% CI of
+[-0.27, 0.52]** and P(better) = 0.61 - a coin flip. In raw terms one differs from
+the human on two items and the other on three: the entire gap is **one item out of
+fifteen**. Any write-up that ranks these two judges is reading noise. The
+separation the data does support is between the strong judges and the low-cost
+one, and that one is large - the Haiku-class judge flagged **none** of the nine
+items the human flagged, so its kappa of 0.00 is not chance-level agreement but a
+rater that never fired at all.
 
 **5. Agreement is worst on the two things a legal product most needs.** Even
 between the two strong model judges, the critical-failure flag reached kappa
@@ -237,10 +257,14 @@ An evaluation write-up that does not list them is not finished.
   judges that had the gold reference in front of them. The fix for a future pass
   is a fixed glossary written before any item is shown, containing no proposition
   that appears in a gold reference.
-- **L6 - three of her five dimensions carry almost no variance.** This also makes
-  some of her per-dimension agreement figures degenerate rather than impressive -
-  the 1.00 on issue completeness against the cross-vendor judge is two near-constant
-  raters coinciding, not a meaningful convergence. She scored issue
+- **L6 - three of her five dimensions carry almost no variance, which makes some
+  per-dimension coefficients meaningless rather than impressive.** Two examples
+  from the same comparison, the human against the cross-vendor judge: issue
+  completeness reads **1.00** because both raters put 14 of 15 items at the same
+  single value, and authority hygiene reads **-0.08** because she used two
+  categories where the judge used four (Gwet's AC2 on those same cells is 1.00 and
+  0.86). Neither number should be quoted as evidence of anything. Her anchoring
+  value rests on legal accuracy, jurisdictional grounding and the flag. She scored issue
   completeness 1 on 14 of 15 items, authority hygiene 1 on 13 of 15, and scope
   discipline 1 on 13 of 15. Kappa against a near-constant rater is close to
   uninformative, and where it came out high it is because the other rater is also
@@ -249,8 +273,13 @@ An evaluation write-up that does not list them is not finished.
   model judges and was not run for her: fifteen items in one sitting, no repeated
   items at the end, no calibration break. Her earlier ratings use more of the
   scale than her later ones, and drift cannot be separated from signal.
-- **L8 - the human pass covers 15 of 40 items.** Enough to rank the judges
-  against her; not enough to be precise about any single dimension.
+- **L8 - the human pass covers 15 of 40 items, and the subset is not a simple
+  random sample.** Fourteen items were drawn one per practice-area x
+  prompt-condition stratum; the fifteenth was chosen purposively as the item with
+  the widest spread across the model judges, which tilts the comparison set
+  slightly toward contentious items. At n=15 the interval on a flag kappa spans
+  roughly 0.5, which is wide enough that the panel can be split into strong and
+  weak but not ordered within those groups.
 
 **On the statistics**
 

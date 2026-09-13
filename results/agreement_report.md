@@ -238,6 +238,20 @@ Confusion on the flag: both raised **6**, only `G4` **0**, only `GH` **3**, neit
 Confusion on the flag: both raised **7**, only `G5` **0**, only `GH` **2**, neither **6**.
 
 
+## 3a. Agreement with the human rater, with uncertainty
+
+The human pass is the study's only anchor outside the models, and it is small. Point estimates alone would let a reader rank the judges more confidently than the data allows, so the interval and the raw count of disagreeing items are reported next to every coefficient.
+
+| Judge | Flag kappa vs `GH` | 95% CI | Items scored differently | n |
+|---|---|---|---|---|
+| `G5` | 0.74 | [0.37, 1.00] | 2 of 15 | 15 |
+| `G4` | 0.62 | [0.24, 1.00] | 3 of 15 | 15 |
+| `G1` | 0.39 | [0.09, 0.74] | 5 of 15 | 15 |
+| `G2` | 0.24 | [-0.24, 0.71] | 5 of 15 | 15 |
+| `G3` | 0.00 | [0.00, 0.00] | 9 of 15 | 15 |
+
+**Is `G5` actually better than `G4`?** Paired bootstrap on the difference: **+0.12**, 95% CI **[-0.27, 0.52]**, P(`G5` > `G4`) = **0.61**. In raw terms `G5` differs from the human on **2** items and `G4` on **3**. The gap between the two strongest judges is one or two items and is **not distinguishable from noise at this sample size**. What the data does separate is strong judges from the low-cost one, and that gap is large.
+
 ## 4. Multi-rater agreement
 
 Computed over the independent raters: `G2`, `G3`, `G4`, `G5`, `GH`. Krippendorff's alpha uses every rating, including raters who covered only part of the set - handling missing cells natively is why it is the right headline statistic here. Fleiss' kappa requires complete cases and is computed over `G2`, `G3`, `G4`, `G5` on all 40 items.

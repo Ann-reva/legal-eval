@@ -37,8 +37,9 @@ are how it got there.
 2. **Select judges on item-level agreement with a human, never on matching
    aggregate rates.** The two are actively misleading here: the judge that matched
    the human's average severity exactly was among those that agreed with her least,
-   and the best-agreeing judge came from a different vendor than the rest of the
-   panel. Judge selection is an empirical question, not a procurement default.
+   and a judge from outside the incumbent vendor landed at the top of the panel.
+   Judge selection is an empirical question, not a procurement default — and one
+   that needs more than fifteen anchored items to settle.
 3. **Route by tier rather than choosing one judge.** A low-cost judge tracks
    *relative* movement between releases at a fraction of the cost, but caught none
    of the human-flagged critical failures. Use it for regression signal; send
@@ -62,15 +63,18 @@ are how it got there.
    picked the wrong judge.** The human rater's mean legal-accuracy score is
    identical to the Sonnet-class judge (1.07). Item by item, agreement with her on
    the critical-failure flag ran **0.74** (cross-vendor GPT-class), **0.62**
-   (Opus-class), **0.24** (Sonnet-class), **0.00** (Haiku-class — it caught none of
-   the nine items she flagged). On 15 items against a non-expert rater this is
-   exploratory evidence, not an established effect.
+   (Opus-class), **0.24** (Sonnet-class), **0.00** (Haiku-class — it flagged none
+   of the nine items she flagged). At n = 15 the two leading intervals overlap
+   almost completely, so the two strong judges are **not** ranked against each
+   other; what separates is strong from low-cost, and that gap is large.
 4. **The pattern is not an artefact of one vendor.** A GPT-class judge from a
-   different vendor agreed with the human better than any Claude judge, agreed
-   with the Opus-class judge (flag kappa 0.55) more than the two Claude tiers
-   agreed with each other (0.24), and was the strictest judge of all — while being
-   the only judge with no family relationship to the system under test.
-   **Capability tier separates judges more than vendor does.**
+   different vendor landed at the top of the panel alongside the Opus-class judge,
+   agreed with that judge (flag kappa 0.55) more than the two Claude tiers agreed
+   with each other (0.24), and was the strictest judge of all — while being the
+   only judge with no family relationship to the system under test. **Capability
+   tier separates judges more than vendor does.** It is *not* demonstrably better
+   than the Opus-class judge: that difference is +0.12 with a 95% CI of
+   [−0.27, 0.52] and comes down to a single item out of fifteen.
 5. **A substantial share of the agreement was the answer key, not the law.**
    Removing the gold reference from a judge's prompt dropped its agreement with its
    own equipped self to 0.46–0.75, and collapsed authority hygiene from **1.00 to
@@ -120,7 +124,7 @@ Nothing in this repository is legal advice.
 
 ## Figures
 
-![Agreement with the human rater](results/figures/human_agreement.png)
+![Agreement with the human rater, with confidence intervals](results/figures/human_agreement.png)
 ![Same judge vs another vendor vs the human rater](results/figures/intra_vs_inter.png)
 ![Rater severity](results/figures/rater_severity.png)
 ![Critical-failure spread](results/figures/critical_failure_spread.png)
