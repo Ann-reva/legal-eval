@@ -57,15 +57,20 @@ deadlines. Explicit adjudication rules: score the answer as written, tie-break
 downward, rationale mandatory, length is not quality. Full text in
 `docs/rubric.md`.
 
-**Judges.** Eight rating passes in total. Four form the panel:
+**Judges.** Nine rating passes in total. Five form the panel:
 
 | Rater | Model | Items | Execution |
 |---|---|---|---|
-| `G2` | Sonnet-class | 40 | API, one independent call per item |
 | `G4` | Opus-class | 40 | API, one independent call per item |
+| `G5` | **GPT-class, a different vendor** | 40 | API, one independent call per item |
+| `G2` | Sonnet-class | 40 | API, one independent call per item |
 | `G3` | Haiku-class | 40 | cold subagent, fresh context |
 | `GH` | **human** | 15 | manual, one item at a time |
 | `G1` | Opus-class | 40 | pilot pass in the authoring context - **excluded from the headline** |
+
+`G5` is the only judge with no family relationship to the system under test,
+which is a Claude model. Any self-preference effect that inflates a Claude
+judge's scores does not apply to it.
 
 Three further passes are control arms rather than panel members: `G4b` and `G2b`
 repeat `G4` and `G2` with the same prompt in a different order (test-retest), and
@@ -119,36 +124,48 @@ measured rather than assumed.
 
 **2. The choice of judge dominates everything else.** Across the panel, the share
 of answers flagged as a critical failure - the deployment gate - ran from **8% to
-75%**. Mean legal-accuracy score ran from **1.07 to 2.50** on a 0-3 scale. Same
+75%**. Mean legal-accuracy score ran from **0.97 to 2.50** on a 0-3 scale. Same
 rubric, same answers, same instructions.
 
 **3. In this sample, matching a judge to a human by average score would have
-picked the wrong judge.** The
-human rater's mean legal-accuracy score is **1.07** - identical to the
-Sonnet-class judge (1.07) and well below the Opus-class judge (1.43). On
-aggregate severity, Sonnet is the perfect match. Item by item it is not close:
+picked the wrong judge.** The human rater's mean legal-accuracy score is identical
+to the Sonnet-class judge (1.07). Item by item it is not close:
 
-| Against the human rater (n=15) | Opus-class | Sonnet-class | Haiku-class |
-|---|---|---|---|
-| Critical-failure flag (kappa) | **0.62** | 0.24 | **0.00** |
-| Jurisdictional grounding (kappa_w) | 0.62 | 0.57 | 0.00 |
-| Issue completeness (kappa_w) | 0.67 | 0.63 | 0.01 |
-| Legal accuracy (kappa_w) | 0.58 | 0.47 | 0.10 |
+| Against the human rater (n=15) | GPT-class (other vendor) | Opus-class | Sonnet-class | Haiku-class |
+|---|---|---|---|---|
+| Critical-failure flag (kappa) | **0.74** | 0.62 | 0.24 | **0.00** |
+| Legal accuracy (kappa_w) | 0.75 | 0.58 | 0.47 | 0.10 |
+| Jurisdictional grounding (kappa_w) | 0.19 | 0.62 | 0.57 | 0.00 |
 
-The low-cost judge flagged **none** of the nine items the human flagged as
-critical failures - zero of nine. And the Opus judge produced **no false
-positives at all** against the human: every item it flagged, she flagged too; it
-only missed three. For a release gate, that asymmetry is the property worth
-knowing, and it is invisible in any aggregate score. On 15 items against a
-non-expert rater this is exploratory evidence, not an established effect - see
-L4 through L8.
+The low-cost judge flagged **none** of the nine items she flagged as critical
+failures. The two strongest judges produced **no false positives** against her:
+every item either of them flagged, she flagged too; they only missed items. For a
+release gate that asymmetry is the property worth knowing, and it is invisible in
+any aggregate score. On 15 items against a non-expert rater this is exploratory
+evidence, not an established effect - see L4 through L8. The jurisdictional-
+grounding row shows the fragility directly: the judge that tracks her best on the
+flag tracks her worst on that dimension.
 
-**4. Agreement is worst on the two things a legal product most needs.** Even
+**4. The pattern is not an artefact of one vendor.** Adding a GPT-class judge from
+a different vendor was the test of whether findings 2 and 3 were a property of the
+Claude family. They were not, and the cross-vendor arm strengthened them:
+
+- It agreed with the human **better than any Claude judge** (flag kappa 0.74).
+- It agreed with the Opus-class judge (flag kappa **0.55**) more than the two
+  Claude judges of different tiers agreed with each other (**0.24**). Capability
+  tier separates judges more than vendor does.
+- It was the **strictest** judge on legal accuracy (mean 0.97, against 1.43 for
+  Opus-class and 2.50 for Haiku-class), and it has no family relationship to the
+  system under test - so its strictness cannot be explained by self-preference.
+- Against the low-cost judge it agrees with essentially nothing: weighted kappa
+  0.04 to 0.16 across every dimension.
+
+**5. Agreement is worst on the two things a legal product most needs.** Even
 between the two strong model judges, the critical-failure flag reached kappa
 **0.24** and authority hygiene - the dimension that catches fabricated citations
 - reached weighted kappa **0.31**, the lowest of the five.
 
-**5. A substantial share of the agreement was the answer key, not the law.** Removing
+**6. A substantial share of the agreement was the answer key, not the law.** Removing
 the gold reference from the Opus judge's prompt dropped its agreement with its own
 gold-reference-equipped self from a 0.86-1.00 ceiling to **0.46-0.75**. The
 collapse is worst on authority hygiene: **1.00 to 0.46**. That is the expected
@@ -159,7 +176,7 @@ evidence for proposal P4, which makes that dimension conditional on an authored
 flags against 18), and the no-gold judge still agreed with the human better than
 the Sonnet judge did with the answer key in hand (0.47 vs 0.24).
 
-**6. The failure mode is instrument design, not legal reading.** On most items
+**7. The failure mode is instrument design, not legal reading.** On most items
 where a stricter judge flagged and a lenient one did not, the lenient judge's own
 rationale had already named the defect - "Misstates vehicle as Rule 12(e) when
 correct answer is Rule 12(c)", "Fails to address DGCL 251(h)... major omission" -
@@ -168,14 +185,14 @@ binary checks is proposal P1. Without mandatory rationales this would have been
 invisible: kappa alone says "the raters disagree" and implies the raters are the
 problem.
 
-**7. Kappa alone would have produced the wrong diagnosis on jurisdiction.** `G1`
+**8. Kappa alone would have produced the wrong diagnosis on jurisdiction.** `G1`
 vs `G3` showed **100% agreement within one point** on jurisdictional grounding
 with weighted kappa of **0.09** and Gwet's AC2 of **0.89** - the kappa paradox,
 traceable to a single line of the rubric (adjudication rule 3) that one judge
 applied and the other did not. Gwet's coefficient is in the report for exactly
 this reason.
 
-**8. The rubric detects the manipulation, with one honest anomaly.** All judges
+**9. The rubric detects the manipulation, with one honest anomaly.** All judges
 scored `B_terse` lower on issue completeness and scope discipline. But two scored
 it *higher* on legal accuracy (+0.25). The likely explanation is mechanical: a
 32-word answer makes fewer legal propositions than a 117-word one, so it has less
@@ -220,7 +237,10 @@ An evaluation write-up that does not list them is not finished.
   judges that had the gold reference in front of them. The fix for a future pass
   is a fixed glossary written before any item is shown, containing no proposition
   that appears in a gold reference.
-- **L6 - three of her five dimensions carry almost no variance.** She scored issue
+- **L6 - three of her five dimensions carry almost no variance.** This also makes
+  some of her per-dimension agreement figures degenerate rather than impressive -
+  the 1.00 on issue completeness against the cross-vendor judge is two near-constant
+  raters coinciding, not a meaningful convergence. She scored issue
   completeness 1 on 14 of 15 items, authority hygiene 1 on 13 of 15, and scope
   discipline 1 on 13 of 15. Kappa against a near-constant rater is close to
   uninformative, and where it came out high it is because the other rater is also
@@ -244,7 +264,7 @@ An evaluation write-up that does not list them is not finished.
   system would show on real traffic. This is a stress test, not a survey.
 - **L11 - the ablation removed three components at once.** Dropping the gold
   reference dropped the must-include list, the trap and the expected authorities
-  together, so finding 5 cannot attribute the loss to any one of them. The
+  together, so finding 6 cannot attribute the loss to any one of them. The
   authority-hygiene collapse is most plausibly the authorities list specifically -
   testable by removing one component at a time, and not tested.
 - **L12 - the flag and D4 are not independent by construction.** The rubric makes
@@ -257,13 +277,14 @@ An evaluation write-up that does not list them is not finished.
 
 **On coverage**
 
-- **L14 - single vendor, and no cross-vendor run.** All model judges are Claude
-  models. Cross-vendor agreement is the more demanding and more informative test.
-  `src/run_graders.py` supports OpenAI and Google providers; neither has been run,
-  so that capability is a promise in this repository, not a result.
+- **L14 - two vendors, not many.** One cross-vendor judge (`G5`) has been run and
+  it replicates the pattern, but the panel is still one vendor on each side, one
+  model per vendor, and a system under test from one of them. A third vendor, a
+  second model per vendor, or a non-Claude system under test would each test
+  something this design cannot.
 - **L15 - the prompt-condition manipulation is confounded.** `B_terse` changes
   length, hedging and directness at once, so an effect cannot be attributed to one
-  of them. The mechanical explanation offered for the D1 anomaly in finding 8 is a
+  of them. The mechanical explanation offered for the D1 anomaly in finding 9 is a
   hypothesis, not a tested result.
 - **L16 - the gold references have not been reviewed by a licensed attorney.**
   They are researched against named primary authority and re-checked against

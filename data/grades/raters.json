@@ -29,8 +29,7 @@
     "execution": "API, one independent call per item, extended thinking disabled, own presentation order",
     "independence": "independent - fresh context per item, no access to other raters or to item authoring",
     "role": "model judge",
-    "headline": true,
-    "headline_pair": true
+    "headline": true
   },
   "G4": {
     "label": "Opus-class, API",
@@ -70,5 +69,16 @@
     "headline": false,
     "variant_of": "G4",
     "arm": "no_gold"
+  },
+  "G5": {
+    "label": "GPT-class, API (cross-vendor)",
+    "model": "gpt-6-astra",
+    "execution": "API, one independent call per item; 38 items in one pass (seed 50110), 2 items re-run sequentially after new-account rate limiting (seed 785)",
+    "independence": "independent, and the only judge from a different vendor",
+    "role": "model judge (cross-vendor arm)",
+    "headline": true,
+    "seed": 50110,
+    "seed_retry": 785,
+    "headline_pair": true
   }
 }

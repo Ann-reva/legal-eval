@@ -12,6 +12,7 @@
 | `G4b` | claude-opus-5 | test-retest: same prompt, different order, second run | 40/40 | 2026-09-12 |
 | `G2b` | claude-sonnet-5 | test-retest: same prompt, different order, second run | 40/40 | 2026-09-12 |
 | `G4ng` | claude-opus-5 | ablation: gold reference withheld from the prompt | 39/40 | 2026-09-12 |
+| `G5` | gpt-6-astra (different vendor) | API, one independent call per item | 40/40 | 2026-09-13 |
 
 ## Notes from the API runs
 
@@ -42,6 +43,14 @@ each of the 14 practice-area x prompt-condition strata, plus the single item wit
 the widest spread across the three independent model judges. The rater saw the
 question, the gold reference and the answer, one item at a time, and no model
 scores at any point.
+
+**Cross-vendor pass provenance.** `G5` was run in two parts. 38 items completed in
+the main pass at the default presentation-order seed (50110, crc32 of the rater
+id). Two items failed against a new-account rate limit of 10k tokens/minute with
+four concurrent workers, and were re-run sequentially with a pause at seed 785.
+Recorded here rather than smoothed over: the split does not affect the ratings,
+but a reader reconstructing the run needs both seeds. The practical lesson is that
+`--workers 4` is too aggressive for a fresh API account.
 
 **Cost.** Roughly 132k input and 12k output tokens per 40-item pass; eight passes
 in total.

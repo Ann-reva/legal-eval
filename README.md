@@ -17,9 +17,10 @@ confidently inverted rules, jurisdiction substitution, and missed dispositive
 deadlines. Rationales are mandatory. Full text in
 [`docs/rubric.md`](docs/rubric.md).
 
-**Who scored it.** Eight rating passes: three model tiers (Opus-, Sonnet- and
-Haiku-class), a human rater on 15 items, two test–retest repeats, and one
-ablation with the gold reference withheld. Statistics: Cohen's kappa (plain and
+**Who scored it.** Nine rating passes: four model judges across two vendors
+(Opus-, Sonnet- and Haiku-class, plus a GPT-class judge from a different vendor),
+a human rater on 15 items, two test–retest repeats, and one ablation with the gold
+reference withheld. Statistics: Cohen's kappa (plain and
 quadratically weighted), Fleiss' kappa, Krippendorff's alpha, Gwet's AC1/AC2,
 bootstrap CIs — implemented from scratch in [`src/agreement.py`](src/agreement.py)
 and validated against published worked examples and two reference packages.
@@ -35,7 +36,9 @@ are how it got there.
    before it is a property of the system.
 2. **Select judges on item-level agreement with a human, never on matching
    aggregate rates.** The two are actively misleading here: the judge that matched
-   the human's average severity exactly was the one that agreed with her least.
+   the human's average severity exactly was among those that agreed with her least,
+   and the best-agreeing judge came from a different vendor than the rest of the
+   panel. Judge selection is an empirical question, not a procurement default.
 3. **Route by tier rather than choosing one judge.** A low-cost judge tracks
    *relative* movement between releases at a fraction of the cost, but caught none
    of the human-flagged critical failures. Use it for regression signal; send
@@ -50,24 +53,29 @@ are how it got there.
 ## What came out
 
 1. **Judges flagged between 8% and 75% of the same answers as release blockers.**
-2. **That divergence is not sampling noise.** Re-running each judge on the same
-   items reproduced its own scores at weighted kappa **0.86–1.00** — the
+2. **That divergence does not look like sampling noise.** Re-running each judge on
+   the same items reproduced its own scores at weighted kappa **0.86–1.00** — the
    Opus-class judge reproduced all 18 of its flags exactly — while agreement
-   *between* judges ran 0.09–0.78. On one repeat, the disagreement looks like a
-   stable property of the judge rather than run-to-run variance; prompt
+   *between* judges ran 0.09–0.78. One repeat bounds run-to-run variance; prompt
    perturbation is untested.
 3. **In this sample, matching a judge to a human by average score would have
-   picked the wrong judge.** The
-   human rater's mean legal-accuracy score is identical to the Sonnet-class judge
-   (1.07). Item by item she is much closer to the Opus-class judge: flag kappa
-   **0.62** vs **0.24**. The Haiku-class judge caught **zero of the nine** items
-   she flagged as critical failures. On 15 items against a non-expert rater this
-   is exploratory evidence, not an established effect.
-4. **A substantial share of the agreement was the answer key, not the law.** Removing
-   the gold reference from a judge's prompt dropped its agreement with its own
-   equipped self to 0.46–0.75, and collapsed authority hygiene from **1.00 to
+   picked the wrong judge.** The human rater's mean legal-accuracy score is
+   identical to the Sonnet-class judge (1.07). Item by item, agreement with her on
+   the critical-failure flag ran **0.74** (cross-vendor GPT-class), **0.62**
+   (Opus-class), **0.24** (Sonnet-class), **0.00** (Haiku-class — it caught none of
+   the nine items she flagged). On 15 items against a non-expert rater this is
+   exploratory evidence, not an established effect.
+4. **The pattern is not an artefact of one vendor.** A GPT-class judge from a
+   different vendor agreed with the human better than any Claude judge, agreed
+   with the Opus-class judge (flag kappa 0.55) more than the two Claude tiers
+   agreed with each other (0.24), and was the strictest judge of all — while being
+   the only judge with no family relationship to the system under test.
+   **Capability tier separates judges more than vendor does.**
+5. **A substantial share of the agreement was the answer key, not the law.**
+   Removing the gold reference from a judge's prompt dropped its agreement with its
+   own equipped self to 0.46–0.75, and collapsed authority hygiene from **1.00 to
    0.46**.
-5. **The failure mode is instrument design, not legal reading.** Where a lenient
+6. **The failure mode is instrument design, not legal reading.** Where a lenient
    judge failed to raise the flag, its own written rationale had usually already
    named the defect. Six concrete rubric revisions follow from this:
    [`results/rubric_v1.1_proposal.md`](results/rubric_v1.1_proposal.md).
@@ -80,10 +88,9 @@ Full argument, all findings and the complete limitations list:
 Sixteen are documented in `METHODOLOGY.md`. The four that most constrain what
 these results can be used for:
 
-- **All model judges are Claude models (L14).** There is no cross-vendor
-  comparison. Cross-vendor agreement is the more demanding test;
-  `src/run_graders.py` supports OpenAI and Google providers for it, and it has not
-  been run.
+- **Two vendors, not many (L14).** One cross-vendor judge has been run and it
+  replicates the pattern, but the panel is still one vendor on each side, one model
+  per vendor, and a system under test from one of them.
 - **The gold references have not been reviewed by a licensed attorney (L16).**
   They are researched against named primary authority and re-checked against
   primary sources in September 2026 (`docs/verification.md`), but nothing here
@@ -113,7 +120,8 @@ Nothing in this repository is legal advice.
 
 ## Figures
 
-![Same judge vs other judges vs the human rater](results/figures/intra_vs_inter.png)
+![Agreement with the human rater](results/figures/human_agreement.png)
+![Same judge vs another vendor vs the human rater](results/figures/intra_vs_inter.png)
 ![Rater severity](results/figures/rater_severity.png)
 ![Critical-failure spread](results/figures/critical_failure_spread.png)
 ![Agreement by dimension](results/figures/agreement_by_dimension.png)
@@ -127,7 +135,8 @@ data/
                                (must_include / trap / authorities)
   answers.jsonl                40 answers from the system under test, tagged with
                                the prompt condition that produced them
-  grades/G1..G4.jsonl          per-item ratings from each model judge, with rationales
+  grades/G1..G5.jsonl          per-item ratings from each model judge, with rationales
+                               (G5 is the cross-vendor judge)
   grades/GH.jsonl              human rater, 15 items (non-expert, rubric-trained)
   grades/G2b, G4b.jsonl        test-retest arms: same judge, same prompt, second run
   grades/G4ng.jsonl            ablation arm: same judge, gold reference withheld
@@ -173,8 +182,8 @@ python src/figures.py
 
 ## Extend
 
-**Add a cross-vendor judge** — the most informative single addition, and the one
-that removes limitation L14.
+**Add a third vendor, or a second model per vendor.** One cross-vendor judge
+(`G5`) is in the panel; the design still cannot separate vendor from model.
 
 ```bash
 pip install openai

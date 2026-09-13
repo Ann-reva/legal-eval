@@ -18,6 +18,8 @@ from analyze import load, DIMS, CATS
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SURFACE, INK, INK_2, MUTED = "#fcfcfb", "#0b0b0b", "#52514e", "#c9c8c2"
 SERIES = ["#2a78d6", "#eb6834", "#1baf7a"]
+MODEL_SHORT = {"G2": "Sonnet-class", "G3": "Haiku-class", "G4": "Opus-class",
+               "G5": "GPT-class, different vendor"}
 
 plt.rcParams.update({
     "figure.facecolor": SURFACE, "axes.facecolor": SURFACE, "savefig.facecolor": SURFACE,
@@ -36,26 +38,63 @@ def _clean(ax, axis="x"):
 
 
 def fig_severity(grades, judges, ids, meta, out):
-    """One measure, one axis: mean rubric score. Independent judges only."""
+    """Small multiples: one panel per judge, one measure, one hue.
+
+    Past three series a grouped bar chart cannot keep every pair separable for
+    colour-vision-deficient readers, so the panel count carries identity here and
+    colour carries nothing.
+    """
     labels = [n.split(" ", 1)[1] for _, n in DIMS]
-    fig, ax = plt.subplots(figsize=(8.6, 4.6))
-    h = 0.25
+    n = len(judges)
+    fig, axes = plt.subplots(1, n, figsize=(2.35 * n + 1.6, 3.9), sharex=True)
+    if n == 1:
+        axes = [axes]
     y = np.arange(len(labels))
-    for n, (r, col) in enumerate(zip(judges, SERIES)):
-        vals = [np.mean([grades[r][i][d] for i in ids]) for d, _ in DIMS]
-        off = (n - (len(judges) - 1) / 2) * (h + 0.03)
-        b = ax.barh(y + off, vals, height=h, color=col,
-                    label=f"{r} — {meta[r]['label']}", zorder=3)
-        for rect, v in zip(b, vals):
-            ax.text(v + .04, rect.get_y() + rect.get_height() / 2, f"{v:.2f}",
-                    va="center", ha="left", fontsize=8.5, color=INK_2)
-    ax.set_yticks(y); ax.set_yticklabels(labels)
-    ax.invert_yaxis(); ax.set_xlim(0, 3.3); ax.set_xticks([0, 1, 2, 3])
-    ax.set_xlabel("Mean rubric score (0 = unacceptable, 3 = strong)")
-    ax.set_title("Three independent judges, one rubric, the same 40 answers",
-                 loc="left", fontsize=12, color=INK, pad=30)
-    ax.legend(frameon=False, loc="upper left", bbox_to_anchor=(0, 1.13),
-              ncol=3, fontsize=8.5, handletextpad=.4, columnspacing=1.4)
+    for ax, r in zip(axes, judges):
+        cv = [i for i in ids if i in grades[r]] or list(grades[r])
+        vals = [np.mean([grades[r][i][d] for i in cv]) for d, _ in DIMS]
+        bars = ax.barh(y, vals, height=.55, color=SERIES[0], zorder=3)
+        for rect, v in zip(bars, vals):
+            ax.text(v + .06, rect.get_y() + rect.get_height() / 2, f"{v:.2f}",
+                    va="center", ha="left", fontsize=8, color=INK_2)
+        ax.set_title(f"{r} — {meta[r]['label']}\n(n = {len(cv)})",
+                     loc="left", fontsize=8.5, color=INK_2, pad=6)
+        ax.set_xlim(0, 3.35); ax.set_xticks([0, 1, 2, 3])
+        ax.invert_yaxis()
+        ax.set_yticks(y)
+        ax.set_yticklabels(labels if ax is axes[0] else [])
+        _clean(ax)
+    fig.suptitle("Mean rubric score by judge (0 = unacceptable, 3 = strong)",
+                 x=0.005, ha="left", fontsize=12, color=INK)
+    fig.supxlabel("Mean rubric score", fontsize=9, color=INK_2)
+    fig.tight_layout(rect=[0, 0.02, 1, 0.94])
+    fig.savefig(out, dpi=200); plt.close(fig)
+
+
+def fig_human_agreement(grades, judges, out):
+    """One measure, one axis, one series: how each model judge agrees with the
+    human rater on the flag that gates release."""
+    rows = []
+    for r in judges:
+        ids = sorted(set(grades[r]) & set(grades["GH"]))
+        if len(ids) < 5:
+            continue
+        k = cohen_kappa([int(grades[r][i]["critical_failure"]) for i in ids],
+                        [int(grades["GH"][i]["critical_failure"]) for i in ids], [0, 1])
+        rows.append((r, k, len(ids)))
+    rows.sort(key=lambda t: t[1])
+    fig, ax = plt.subplots(figsize=(8.4, 3.4))
+    ypos = np.arange(len(rows))
+    bars = ax.barh(ypos, [k for _, k, _ in rows], height=.5, color=SERIES[0], zorder=3)
+    for rect, (_, k, _) in zip(bars, rows):
+        ax.text(max(k, 0) + .012, rect.get_y() + rect.get_height() / 2, f"{k:.2f}",
+                va="center", ha="left", fontsize=9.5, color=INK_2)
+    ax.set_yticks(ypos)
+    ax.set_yticklabels([f"{r} — {m}" for (r, _, _), m in
+                        zip(rows, [MODEL_SHORT.get(r, r) for r, _, _ in rows])])
+    ax.set_xlim(0, 0.9); ax.set_xlabel("Cohen's kappa with the human rater (n = 15)")
+    ax.set_title("Agreement with the human rater on the critical-failure flag",
+                 loc="left", fontsize=12, color=INK, pad=12)
     _clean(ax)
     fig.tight_layout(); fig.savefig(out, dpi=200); plt.close(fig)
 
@@ -127,7 +166,7 @@ def fig_intra_vs_inter(grades, meta, out):
     judge, and against the human rater. Three series, categorical slots 1-3,
     validated all-pairs; every bar carries a direct label."""
     rows = [("G4", "G4b", "Same judge, second run (n=40)"),
-            ("G4", "G2", "A different model judge (n=40)"),
+            ("G4", "G5", "A judge from a different vendor (n=40)"),
             ("G4", "GH", "The human rater (n=15)")]
     rows = [(a, b, lab) for a, b, lab in rows if a in grades and b in grades]
     labels = [n.split(" ", 1)[1] for _, n in DIMS] + ["Critical-failure flag"]
@@ -150,7 +189,7 @@ def fig_intra_vs_inter(grades, meta, out):
     ax.set_yticks(y); ax.set_yticklabels(labels); ax.invert_yaxis()
     ax.set_xlim(0, 1.12); ax.set_xticks([0, .25, .5, .75, 1])
     ax.set_xlabel("Cohen's kappa (quadratic weights; unweighted for the binary flag)")
-    ax.set_title("The Opus-class judge agrees with itself; it agrees with others much less",
+    ax.set_title("The Opus-class judge against itself, another vendor, and a person",
                  loc="left", fontsize=12, color=INK, pad=38)
     ax.legend(frameon=False, loc="upper left", bbox_to_anchor=(0, 1.15), ncol=3,
               fontsize=8.5, handletextpad=.4, columnspacing=1.2)
@@ -164,11 +203,13 @@ if __name__ == "__main__":
     complete = [r for r in raters if len([i for i in order if i in grades[r]]) == len(order)]
     ids = [i for i in order if all(i in grades[r] for r in complete)]
     judges = [r for r in raters if meta[r].get("headline", True)
-              and not meta[r].get("variant_of") and r in complete][:3]
+              and not meta[r].get("variant_of") and r in complete]
     pair = [r for r in raters if meta[r].get("headline_pair")] or judges[:2]
     pair = [r for r in pair if r in complete][:2]
     os.makedirs(f"{ROOT}/results/figures", exist_ok=True)
     fig_severity(grades, judges, ids, meta, f"{ROOT}/results/figures/rater_severity.png")
+    if "GH" in grades:
+        fig_human_agreement(grades, judges, f"{ROOT}/results/figures/human_agreement.png")
     fig_flag_spread(grades, judges, ids, f"{ROOT}/results/figures/critical_failure_spread.png")
     fig_agreement(grades, pair, ids, meta, f"{ROOT}/results/figures/agreement_by_dimension.png")
     fig_intra_vs_inter(grades, meta, f"{ROOT}/results/figures/intra_vs_inter.png")
