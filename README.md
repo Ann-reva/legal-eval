@@ -177,14 +177,26 @@ python src/figures.py
 that removes limitation L14.
 
 ```bash
-export OPENAI_API_KEY=...
-python src/run_graders.py --provider openai --model gpt-4.1 --out G5
-python src/analyze.py
+pip install openai
+export OPENAI_API_KEY=...        # never commit it; never paste it anywhere
+
+# preflight: one item, nothing written — checks the model name and request shape
+python src/run_graders.py --provider openai --model <model> --out G5 --limit 1 --dry-run
+
+# the full pass
+python src/run_graders.py --provider openai --model <model> --out G5
+python src/analyze.py && python src/figures.py
 ```
 
-One independent API call per item, in a presentation order unique to that judge.
-The rater is registered in `raters.json` automatically and picked up by the
-analysis.
+One independent API call per item, in a presentation order unique to that judge
+(seeded deterministically from the rater id). The rater is registered in
+`raters.json` automatically and picked up by the analysis.
+
+Model names move, and current models increasingly reject `temperature` and
+sometimes `response_format`. The runner probes the accepted request shape once,
+caches it, and prints which controls the model refused, so an unavailable
+sampling control shows up as a recorded fact rather than a silent difference
+between arms.
 
 **Test the v1.1 rubric.** The six proposals in
 `results/rubric_v1.1_proposal.md` are predictions, not results. Re-running the

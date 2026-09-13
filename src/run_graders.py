@@ -123,14 +123,44 @@ def call_anthropic(model, system, user):
     raise RuntimeError(f"no accepted request shape for {model}: {last}")
 
 
+_OPENAI_SHAPE = None
+
+
 def call_openai(model, system, user):
-    from openai import OpenAI
+    """Send one judging request to OpenAI.
+
+    Newer models reject `temperature` and some reject `response_format`, exactly
+    as the Anthropic models in this study reject `temperature`. Probe the shapes
+    once, cache what works, and say so rather than failing 40 times.
+    """
+    from openai import OpenAI, BadRequestError
+    global _OPENAI_SHAPE
     c = OpenAI()
-    r = c.chat.completions.create(model=model, temperature=0,
-                                  response_format={"type": "json_object"},
-                                  messages=[{"role": "system", "content": system},
-                                            {"role": "user", "content": user}])
-    return r.choices[0].message.content
+    base = dict(model=model,
+                messages=[{"role": "system", "content": system},
+                          {"role": "user", "content": user}])
+    shapes = ([_OPENAI_SHAPE] if _OPENAI_SHAPE is not None else [
+        {"temperature": 0, "response_format": {"type": "json_object"}},
+        {"response_format": {"type": "json_object"}},
+        {"temperature": 0},
+        {},
+    ])
+    last = None
+    for kw in shapes:
+        try:
+            r = c.chat.completions.create(**base, **kw)
+        except (TypeError, BadRequestError) as e:
+            last = e
+            continue
+        if _OPENAI_SHAPE is None:
+            _OPENAI_SHAPE = kw
+            if "temperature" not in kw:
+                print("  note: this model rejects `temperature`; running at its "
+                      "default sampling. Recorded in the run log.", file=sys.stderr)
+            if "response_format" not in kw:
+                print("  note: this model rejects `response_format`; relying on the "
+                      "prompt for JSON.", file=sys.stderr)
+        return r.choices[0].message.content
 
 
 def call_google(model, system, user):
@@ -186,6 +216,12 @@ def main():
     ap.add_argument("--workers", type=int, default=4)
     ap.add_argument("--no-gold", action="store_true",
                     help="hide the gold reference from the judge (ablation arm)")
+    ap.add_argument("--limit", type=int, default=None,
+                    help="grade only the first N items - use --limit 1 as a preflight "
+                         "to check the model name and request shape before spending a "
+                         "full pass")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="with --limit, print the parsed rating and write nothing")
     a = ap.parse_args()
 
     rubric = open(f"{ROOT}/docs/rubric.md").read()
@@ -201,12 +237,20 @@ def main():
     seed = a.seed if a.seed is not None else zlib.crc32(a.out.encode()) % 100_000
     print(f"presentation-order seed: {seed}")
     random.Random(seed).shuffle(recs)
+    if a.limit:
+        recs = recs[:a.limit]
 
     fn = PROVIDERS[a.provider]
     print(f"grading {len(recs)} items with {a.provider}:{a.model} -> data/grades/{a.out}.jsonl")
     with ThreadPoolExecutor(max_workers=a.workers) as ex:
         out = list(ex.map(lambda r: grade_one(fn, a.model, r, rubric, no_gold=a.no_gold), recs))
     out = [o for o in out if o]
+
+    if a.dry_run:
+        print(json.dumps(out, indent=2))
+        print(f"\ndry run: {len(out)}/{len(recs)} parsed, nothing written. "
+              "Drop --dry-run and --limit to run the full pass.")
+        return
 
     path = f"{ROOT}/data/grades/{a.out}.jsonl"
     with open(path, "w") as f:
